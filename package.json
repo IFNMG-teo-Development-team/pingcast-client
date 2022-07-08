@@ -1,0 +1,13 @@
+{
+  "name": "pingcast",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/IFNMG-teo-Development-team/pingcast-client.git",
+  "author": "SamuelMTeixeira <samuelmolendolff@hotmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "material-components-web": "^14.0.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  }
+}
