@@ -1,13 +1,35 @@
 {
   "name": "pingcast",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "src/index.js",
   "repository": "https://github.com/IFNMG-teo-Development-team/pingcast-client.git",
   "author": "SamuelMTeixeira <samuelmolendolff@hotmail.com>",
   "license": "MIT",
+  "nodeVersion": "v16.16.0",
+  "scripts": {
+    "start": "react-scripts start"
+  },
   "dependencies": {
-    "material-components-web": "^14.0.0",
+    "@emotion/react": "^11.9.3",
+    "@emotion/styled": "^11.9.3",
+    "@mui/material": "^5.8.7",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.3.0"
+  },
+  "devDependencies": {
+    "react-scripts": "^5.0.1"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   }
 }
