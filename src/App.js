@@ -1,36 +1,25 @@
-import React from "react";
-import { Link, Outlet } from "react-router-dom";
+import React from 'react'
 
-import { Box } from "@mui/material";
+{/* Paginas */ }
+import Home from './pages/Home'
+import About from './pages/About'
 
-import PingCastAppBar from "./components/AppBar";
+{/* Componentes */ }
+import AppBar from './components/AppBar'
 
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 
-const App = () => {
-    
-    
-    return <>
-        <Box sx={{ display: 'flex' }} >
-            <PingCastAppBar />
-            <Box
-            component="main"
-            sx={{
-                backgroundColor: (theme) =>
-                theme.palette.mode === 'light'
-                    ? theme.palette.grey[100]
-                    : theme.palette.grey[900],
-                flexGrow: 1,
-                height: '100vh',
-                overflow: 'auto',
-            }}
-            >
-                <br/>
-                <br/>
-                <br/>   
-                <Outlet/>
-            </Box>
-        </Box>
-    </>
+function App() {
+  return (
+    <BrowserRouter>
+      <AppBar />
+      <Routes>
+        <Route exact path="/" element={<Home />} />
+
+        <Route path="sobre" element={<About />} />
+      </Routes>
+    </BrowserRouter>
+  )
 }
 
-export default App;
+export default App

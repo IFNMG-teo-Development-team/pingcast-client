@@ -3,9 +3,11 @@ import React from "react";
 const HomePage = () => {
 
 
-    return <>
-        Home
-    </>
+    return ( 
+        <>
+            Bem vindos ao PingCast
+        </>
+    )
 }
 
 export default HomePage;
