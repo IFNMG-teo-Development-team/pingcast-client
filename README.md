@@ -3,7 +3,7 @@
 ## Começando
 
 ```
-yarn installd
+yarn install
 yarn start
 ```
 
