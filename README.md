@@ -10,7 +10,8 @@ yarn start
 ## Tecnologias utilizadas
 
 * [React.js](https://pt-br.reactjs.org/)
-* [Material](https://m3.material.io/)
+* [React Icons](https://react-icons.github.io/react-icons)
+* [Boostrap React](https://react-bootstrap.netlify.app/getting-started/introduction/)
 
 ## Estrutura de pastas
 

@@ -1,0 +1,13 @@
+:root {
+    /* Variáveis das cores */
+    --azul-degrade: #2152ff;
+    --azul-claro-degrade: #21d4fd;
+
+    --cinza-texto: #344767;
+    --cinza-claro: #67748e;
+
+    --bg: #f8f9fa;
+
+    /* Variáveis das cores */
+    --fonte-simples: 'Open Sans', sans-serif;
+}

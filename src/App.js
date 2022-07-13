@@ -1,5 +1,7 @@
 import React from 'react'
 
+import './assets/css/base/base.css'
+
 {/* Paginas */ }
 import Home from './pages/Home'
 import About from './pages/About'
@@ -14,9 +16,9 @@ function App() {
   return (
     <BrowserRouter>
       <AppBar />
-      
+
       <Routes>
-        <Route exact path="/" element={<Home />} />
+        <Route exact path="/" element={<Home />}/>
 
         <Route path="sobre" element={<About />} />
       </Routes>

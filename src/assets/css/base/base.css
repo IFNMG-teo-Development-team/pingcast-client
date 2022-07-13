@@ -1,0 +1,26 @@
+/* Importação das variáveis*/
+@import url(variaveis.css);
+
+/* Importação das fontes (google fonts)*/
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@500&display=swap');
+
+body {
+    background-color: var(--bg);
+}
+body, html {
+    height: 100%;
+}
+
+/* Classes globais */
+.rounded-lg {
+    border-radius: 0.5em !important;
+}
+
+.texto-simples {
+    font-family: var(--fonte-simples);
+    font-size: 15px;
+}
+.color-cinza-claro {
+    color: #67748e;
+}
+

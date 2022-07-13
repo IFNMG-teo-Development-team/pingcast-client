@@ -1,0 +1,64 @@
+.degrade-azul {
+    background: linear-gradient(310deg, var(--azul-degrade), var(--azul-claro-degrade));
+}
+
+button.degrade-azul {
+    border: none !important;
+
+    font-size: 14px !important;
+    transition-property: transform;
+    transition-duration: 2s;
+    transition-delay: 1s;
+}
+
+button.degrade-azul:hover {
+    transform: scale(2);
+}
+
+.btn-outline-primary {
+    color: var(--azul-degrade) !important;
+    border-color: var(--azul-degrade) !important;
+}
+
+.btn-outline-primary:hover {
+    color: white !important;
+}
+
+.descricao {
+    font-family: var(--fonte-simples);
+    color: var(--cinza-texto);
+    font-size: 12px;
+    font-weight: 900;
+}
+
+.titulo {
+    font-family: var(--fonte-simples);
+    font-size: 20px;
+    font-weight: 700;
+
+    margin: 0;
+    padding: 0;
+}
+
+
+@media (min-width: 576px) {
+    .texto {
+        font-size: 12px !important;
+    }
+}
+
+@media (min-width: 768px) {
+    .texto {
+        font-size: 12px !important;
+    }
+}
+
+@media (min-width: 992px) {
+    .texto {
+        font-size: 15px !important;
+    }
+}
+
+@media (min-width: 1200px) {}
+
+@media (min-width: 1400px) {}
