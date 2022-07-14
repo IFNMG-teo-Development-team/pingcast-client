@@ -14,7 +14,7 @@ const PingCastAppBar = () => {
 
     return (
         <header>
-            <Navbar bg="light" expand="md">
+            <Navbar bg="light" expand="md" fixed="top">
                 <Container>
                     <Navbar.Brand className="d-flex align-items-center justify-content-center">
                         <NavLink to="/" className="brand p-2 d-flex align-items-center text-decoration-none">

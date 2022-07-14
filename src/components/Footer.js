@@ -6,7 +6,7 @@ import Container from 'react-bootstrap/Container'
 import Button from 'react-bootstrap/Button'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
-import { Link } from "react-router-dom"
+import { NavLink } from "react-router-dom";
 import Nav from 'react-bootstrap/Nav'
 import { IoMdArrowDropright } from 'react-icons/io'
 import { BsGithub } from 'react-icons/bs'
@@ -22,41 +22,41 @@ const Footer = () => {
                         <p>
                             Teófilo Otoni, MG <br />
                             IFNMG <br />
-                            <strong>IFNMG: </strong><a href='#'>www.ifnmg.edu.br/teofilo-otoni/</a><br></br>
+                            <strong>IFNMG: </strong><a href='https://www.ifnmg.edu.br/teofilo-otoni'>www.ifnmg.edu.br/teofilo-otoni/</a><br></br>
                         </p>
                     </Col>
                     <Col>
                         <h4>Links uteis</h4>
                         <Nav defaultActiveKey="/" className="flex-column">
-                            <Nav.Link href="/">
+                            <NavLink to="/">
                                 <IoMdArrowDropright />
                                 Home
-                            </Nav.Link>
-                            <Nav.Link eventKey="/">
+                            </NavLink>
+                            <NavLink to="sobre">
                                 <IoMdArrowDropright />
                                 Sobre
-                            </Nav.Link>
-                            <Nav.Link eventKey="link-2">
+                            </NavLink>
+                            <NavLink to="termos-privacidade">
                                 <IoMdArrowDropright />
                                 Termos de privacidade
-                            </Nav.Link>
-                            <Nav.Link eventKey="link-2">
+                            </NavLink>
+                            <NavLink to="politica-privacidade">
                                 <IoMdArrowDropright />
                                 Política de privacidade
-                            </Nav.Link>
+                            </NavLink>
                         </Nav>
                     </Col>
-                    <Col className="d-flex d-none">
+                    <Col className="d-block">
                         <h4>Nossos serviços</h4>
                         <Nav defaultActiveKey="/" className="flex-column">
-                            <Nav.Link href="/">
+                            <NavLink to="donate">
                                 <IoMdArrowDropright />
                                 PingCast Premium
-                            </Nav.Link>
-                            <Nav.Link eventKey="/">
+                            </NavLink>
+                            <NavLink to="/parcerias">
                                 <IoMdArrowDropright />
                                 Parcerias
-                            </Nav.Link>
+                            </NavLink>
                         </Nav>
                     </Col>
                     <Col>

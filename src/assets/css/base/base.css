@@ -7,8 +7,12 @@
 body {
     background-color: var(--bg);
 }
-body, html, main {
+body, html {
     height: 100%;
+}
+main {
+    padding-top: 65px;
+    min-height: 100% !important;
 }
 
 /* Classes globais */
@@ -28,4 +32,7 @@ body, html, main {
 }
 .color-branco {
     color: white;
+}
+.color-azul {
+    color: var(--azul-degrade);
 }

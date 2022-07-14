@@ -8,7 +8,6 @@ import Form from 'react-bootstrap/Form'
 import { BsGoogle, BsGithub } from 'react-icons/bs'
 
 const BoxLogin = () => {
-    document.title="PingCast"
 
     return (
         <Form className="form-container w-75">
@@ -43,22 +42,6 @@ const BoxLogin = () => {
                     Github
                 </Button>{' '}
             </div>
-
-
-            {/*
-            <div className="mt-2 d-flex align-items-center justify-content-center">
-                <Button size="lg" className="me-3 p-2 box-opc-login d-flex align-items-center rounded-circle">
-                    <BsGoogle />
-                </Button>{' '}
-                <Button size="lg" className="p-2 box-opc-login d-flex align-items-center rounded-circle">
-                    <BsGithub />
-                </Button>{' '}
-            </div>
-            */}
-
-
-
-
         </Form>
     )
 }

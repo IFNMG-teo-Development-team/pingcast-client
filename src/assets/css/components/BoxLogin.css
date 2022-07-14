@@ -40,6 +40,42 @@ button.degrade-azul:hover {
     padding: 0;
 }
 
+.texto-basico {
+    font-size: 12px;
+}
+
+#bg {
+    position: absolute;
+
+    top:0;
+    right:0;
+
+    height: 100%;
+    width: 50%;
+
+    background: linear-gradient(270deg, rgba(248, 249, 250, 0) 0%, white 95.13%), url("../../img/bg.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    z-index: -1;
+}
+
+
+.bg-texto {
+    z-index: 2;
+}
+.bg-texto h1 {
+    font-weight: 700;
+    color: var(--azul-escuro-titulo);
+    font-family: var(--fonte--jost);
+    font-size: 3em;
+}
+.bg-texto p{
+    font-weight: 500;
+    color: var(--cinza-texto);
+    font-family: var(--fonte-simples);
+    font-size: 1.2em;
+}
 
 @media (min-width: 576px) {
     .texto {
@@ -50,6 +86,9 @@ button.degrade-azul:hover {
 @media (min-width: 768px) {
     .texto {
         font-size: 12px !important;
+    }
+    .bg {
+        height: 80%;
     }
 }
 

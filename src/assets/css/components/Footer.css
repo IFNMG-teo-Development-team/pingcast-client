@@ -11,12 +11,12 @@ footer h3 {
     line-height: 1;
     text-transform: uppercase;
     font-weight: 600;
-    color: #37517e;
+    color: var(--azul-escuro-titulo);
 }
 footer h4 {
     font-size: 16px;
     font-weight: bold;
-    color: #37517e;
+    color: var(--azul-escuro-titulo);
     position: relative;
     padding-bottom: 12px;
 }
@@ -27,18 +27,19 @@ footer p {
     font-family: "Jost", sans-serif;
     color: #5e5e5e;
 }
-footer .nav .nav-link {
+footer .nav a {
     list-style: none;
     padding: 0;
     margin: 0;
+    text-decoration: none;
 }
-footer .nav-link {
+footer a {
     padding: 10px 0 !important;
     display: flex !important;
     align-items: center !important;
 }
 
-footer .nav .nav-link:first-child {
+footer .nav a:first-child {
     padding-top: 0 !important;
 }
 footer a {
