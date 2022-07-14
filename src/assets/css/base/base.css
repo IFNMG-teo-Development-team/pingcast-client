@@ -2,12 +2,12 @@
 @import url(variaveis.css);
 
 /* Importação das fontes (google fonts)*/
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Jost:wght@400&family=Open+Sans:wght@400&display=swap');
 
 body {
     background-color: var(--bg);
 }
-body, html {
+body, html, main {
     height: 100%;
 }
 
@@ -23,4 +23,9 @@ body, html {
 .color-cinza-claro {
     color: #67748e;
 }
-
+.bg-azul {
+    background-color: var(--azul-degrade) !important;
+}
+.color-branco {
+    color: white;
+}

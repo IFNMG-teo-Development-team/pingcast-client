@@ -1,0 +1,54 @@
+.navbar-brand {
+    margin: 0;
+    padding: 0;
+    line-height: 1;
+    font-weight: 600;
+    font-size: 1.3em;
+    font-family: var(--fonte--jost);
+    color: #37517e !important;
+}
+
+header nav{
+    padding: 5px !important;
+    box-shadow: 0 2px 40px #CFCFCF;
+}
+
+.buy-me:hover img{
+    animation: ping 1s linear;
+}
+
+@keyframes ping {
+    0% {
+        transform: rotate(-30deg);
+    }
+
+    30% {
+        transform: rotate(30deg);
+    }
+
+    60% {
+        transform: rotate(-30deg);
+    }
+
+    90% {
+        transform: rotate(0deg);
+    }
+}
+
+nav .opc {
+    color: var(--cinza-claro);
+    text-decoration: none;
+    font-family: var(--fonte--simples);
+}
+
+nav .opc:hover {
+    color: var(--cinza-texto);
+}
+
+nav .brand {
+    color: var(--cinza-claro);
+    font-family: var(--fonte--simples);
+}
+nav .brand:hover {
+    color: var(--cinza-claro);
+}

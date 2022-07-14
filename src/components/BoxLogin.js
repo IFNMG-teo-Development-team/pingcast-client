@@ -3,9 +3,9 @@ import { Link } from "react-router-dom"
 import '../assets/css/components/BoxLogin.css'
 
 {/* Componentes*/ }
-import Button from 'react-bootstrap/Button';
-import Form from 'react-bootstrap/Form';
-import { BsGoogle, BsGithub } from 'react-icons/bs';
+import Button from 'react-bootstrap/Button'
+import Form from 'react-bootstrap/Form'
+import { BsGoogle, BsGithub } from 'react-icons/bs'
 
 const BoxLogin = () => {
     document.title="PingCast"

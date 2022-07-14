@@ -7,12 +7,12 @@ button.degrade-azul {
 
     font-size: 14px !important;
     transition-property: transform;
-    transition-duration: 2s;
-    transition-delay: 1s;
+    transition-duration: 0.3s;
+    transition-delay: 0.1s;
 }
 
 button.degrade-azul:hover {
-    transform: scale(2);
+    transform: scale(1.05);
 }
 
 .btn-outline-primary {

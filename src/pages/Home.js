@@ -10,19 +10,21 @@ import LogoHome from '../components/LogoHome'
 
 const HomePage = () => {
     return (
-        <Container className="h-100">
-            <Row>
-                <Col className="d-flex flex-column align-items-center justify-content-center">
-                    <LogoHome value="Fazer Login" />
-                    <BoxLogin />
-                </Col>
+        <main>
+            <Container>
+                <Row>
+                    <Col className="d-flex flex-column align-items-center justify-content-center">
+                        <LogoHome value="Fazer Login" />
+                        <BoxLogin />
+                    </Col>
 
-                <Col className="d-none d-md-flex align-items-center justify-content-end">
-                    [a imagem vem aqui]
-                </Col>
-            </Row>
+                    <Col className="d-none d-md-flex align-items-center justify-content-end">
+                        [a imagem vem aqui]
+                    </Col>
+                </Row>
 
-        </Container>
+            </Container>
+        </main>
     )
 }
 

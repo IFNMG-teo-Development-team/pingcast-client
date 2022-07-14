@@ -8,10 +8,10 @@ export default function LogoHome(props) {
 
     return (
         <>
-            <div className='d-flex align-items-center justify-content-around mt-5'>
+            {/*<div className='d-flex align-items-center justify-content-around mt-5'>
                 <Image src={imagemBG} alt='logo'width="32px" height="32px" />
                 <h3 className='ms-2 titulo'>PingCast</h3>
-            </div>
+            </div>*/}
             <br />
             <h2 className='mb-3 mt-3 titulo'>{tituloTag}</h2>
         </>

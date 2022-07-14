@@ -1,0 +1,69 @@
+footer {
+    background: #f3f5fa;
+}
+footer div {
+    font-family: var(--fonte--jost);
+}
+footer h3 {
+    font-size: 28px;
+    margin: 0 0 10px 0;
+    padding: 2px 0 2px 0;
+    line-height: 1;
+    text-transform: uppercase;
+    font-weight: 600;
+    color: #37517e;
+}
+footer h4 {
+    font-size: 16px;
+    font-weight: bold;
+    color: #37517e;
+    position: relative;
+    padding-bottom: 12px;
+}
+footer p {
+    font-size: 14px !important;
+    line-height: 24px;
+    margin-bottom: 0;
+    font-family: "Jost", sans-serif;
+    color: #5e5e5e;
+}
+footer .nav .nav-link {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+footer .nav-link {
+    padding: 10px 0 !important;
+    display: flex !important;
+    align-items: center !important;
+}
+
+footer .nav .nav-link:first-child {
+    padding-top: 0 !important;
+}
+footer a {
+    color: #777777 !important;
+    transition: 0.3s;
+    display: inline-block;
+    line-height: 1;
+}
+footer a svg {
+    padding-right: 2px;
+    color: #47b2e4;
+    font-size: 18px;
+    line-height: 1;
+}
+footer .icone {
+    border: none;
+    padding: 12px;
+    background-color: var(--azul-degrade) !important;
+}
+
+footer .icone svg {
+    fill: white;
+}
+
+footer .copyright {
+    padding: 10px !important;
+    
+}
