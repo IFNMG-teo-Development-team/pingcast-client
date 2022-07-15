@@ -12,7 +12,7 @@ button.degrade-azul {
 }
 
 button.degrade-azul:hover {
-    transform: scale(1.05);
+    transform: scale(1.025);
 }
 
 .btn-outline-primary {
@@ -29,13 +29,14 @@ button.degrade-azul:hover {
     color: var(--cinza-texto);
     font-size: 12px;
     font-weight: 900;
+    margin: 0;
 }
 
 .titulo {
-    font-family: var(--fonte-simples);
-    font-size: 20px;
     font-weight: 700;
-
+    font-family: var(--fonte-simples);
+    color: var(--cinza-texto);
+    font-size: 20px;
     margin: 0;
     padding: 0;
 }
@@ -49,7 +50,6 @@ button.degrade-azul:hover {
 
     top:0;
     right:0;
-
     height: 100%;
     width: 50%;
 
@@ -60,15 +60,29 @@ button.degrade-azul:hover {
     z-index: -1;
 }
 
+.label-reduce span, .label-reduce {
+    font-size: 14px;
+    font-family: var(--fonte-simples);
+    text-decoration: none;
+    font-weight: 700;
+}
+
+.label-reduce span{
+    font-weight: 500;
+}
+
+.MuiOutlinedInput-root, .MuiFormControl-root{
+    border-radius: 0.5em !important;
+}
 
 .bg-texto {
-    z-index: 2;
+    align-items: flex-start;
 }
 .bg-texto h1 {
     font-weight: 700;
     color: var(--azul-escuro-titulo);
     font-family: var(--fonte--jost);
-    font-size: 3em;
+    font-size: 5em;
 }
 .bg-texto p{
     font-weight: 500;
@@ -78,24 +92,17 @@ button.degrade-azul:hover {
 }
 
 @media (min-width: 576px) {
-    .texto {
-        font-size: 12px !important;
-    }
+    
 }
 
 @media (min-width: 768px) {
     .texto {
         font-size: 12px !important;
     }
-    .bg {
-        height: 80%;
-    }
 }
 
 @media (min-width: 992px) {
-    .texto {
-        font-size: 15px !important;
-    }
+    
 }
 
 @media (min-width: 1200px) {}
