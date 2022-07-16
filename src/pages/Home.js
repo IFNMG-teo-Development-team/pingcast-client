@@ -2,10 +2,10 @@ import React from 'react';
 import '../assets/css/components/BoxLogin.css'
 
 {/* Componentes*/ }
-import Container from '@mui/material/Container';
-import Box from '@mui/material/Box';
-import Grid from '@mui/material/Grid';
-import { Link } from "react-router-dom";
+import Container from '@mui/material/Container'
+import Box from '@mui/material/Box'
+import Grid from '@mui/material/Grid'
+import { Link } from "react-router-dom"
 import BoxLogin from '../components/BoxLogin'
 import Texto from '../components/Texto'
 import HeadPage from '../components/HeadPage'
@@ -27,7 +27,7 @@ const HomePage = () => {
                     </Grid>
 
 
-                    <Grid item xs={6}  sx={{ display: {  xs: 'none', md: 'flex', lg: 'flex'} }} className="align-items-center justify-content-center">
+                    <Grid item xs={6} sx={{ display: {  xs: 'none', md: 'flex', lg: 'flex'} }} className="align-items-center justify-content-center">
                         <Box id='bg' className="h-100"></Box>
                         <Box className="bg-texto">
                             <Texto value="PingCast" as="h1" className="mb-3" />

@@ -2,82 +2,88 @@ import React from 'react'
 import '../assets/css/components/Footer.css'
 
 {/* Componentes*/ }
-import Container from 'react-bootstrap/Container'
-import Button from 'react-bootstrap/Button'
-import Row from 'react-bootstrap/Row'
-import Col from 'react-bootstrap/Col'
+import Container from '@mui/material/Container'
+import Grid from '@mui/material/Grid'
 import { NavLink } from "react-router-dom";
-import Nav from 'react-bootstrap/Nav'
-import { IoMdArrowDropright } from 'react-icons/io'
-import { BsGithub } from 'react-icons/bs'
+import List from '@mui/material/List';
+import Texto from '../components/Texto'
+import Avatar from '@mui/material/Avatar';
+
+{/* Ícones */ }
+import ArrowRightIcon from '@mui/icons-material/ArrowRight';
+import GitHubIcon from '@mui/icons-material/GitHub';
 
 const Footer = () => {
     return (
         <footer className='d-block w-100 pt-5'>
-            <Container className='d-flex flex-column'>
+            <Container maxWidth="lg" className='d-flex flex-column'>
 
-                <Row>
-                    <Col>
-                        <h3>PingCast</h3>
+                <Grid container spacing={2}>
+                    <Grid item xs={12} sm={6} md={3} >
+                        <Texto value="PingCast" as="h3" />
                         <p>
                             Teófilo Otoni, MG <br />
                             IFNMG <br />
                             <strong>IFNMG: </strong><a href='https://www.ifnmg.edu.br/teofilo-otoni'>www.ifnmg.edu.br/teofilo-otoni/</a><br></br>
                         </p>
-                    </Col>
-                    <Col>
-                        <h4>Links uteis</h4>
-                        <Nav defaultActiveKey="/" className="flex-column">
+                    </Grid>
+
+                    <Grid item xs={12} sm={6} md={3} >
+                        <Texto value="Links uteis" as="h4" />
+                        <List className="flex-column">
                             <NavLink to="/">
-                                <IoMdArrowDropright />
+                                <ArrowRightIcon />
                                 Home
                             </NavLink>
                             <NavLink to="sobre">
-                                <IoMdArrowDropright />
+                                <ArrowRightIcon />
                                 Sobre
                             </NavLink>
                             <NavLink to="termos-privacidade">
-                                <IoMdArrowDropright />
+                                <ArrowRightIcon />
                                 Termos de privacidade
                             </NavLink>
                             <NavLink to="politica-privacidade">
-                                <IoMdArrowDropright />
+                                <ArrowRightIcon />
                                 Política de privacidade
                             </NavLink>
-                        </Nav>
-                    </Col>
-                    <Col className="d-block">
-                        <h4>Nossos serviços</h4>
-                        <Nav defaultActiveKey="/" className="flex-column">
+                        </List>
+                    </Grid>
+
+                    <Grid item xs={12} sm={6} md={3} >
+                        <Texto value="Nossos serviços" as="h4" />
+                        <List className="flex-column">
                             <NavLink to="donate">
-                                <IoMdArrowDropright />
+                                <ArrowRightIcon />
                                 PingCast Premium
                             </NavLink>
                             <NavLink to="/parcerias">
-                                <IoMdArrowDropright />
+                                <ArrowRightIcon />
                                 Parcerias
                             </NavLink>
-                        </Nav>
-                    </Col>
-                    <Col>
-                        <h4>Nossas redes sociais</h4>
-                        <p>Siga nossa plataforma nas redes sociais e também colobore com o código e faça parte do time</p>
+                        </List>
+                    </Grid>
+
+                    <Grid item xs={12} sm={6} md={3} >
+                        <Texto value="Nossas redes sociais" as="h4" />
+                        <Texto value="Siga nossa plataforma nas redes sociais e também colobore com o código e faça parte do time" as="p"/>
+
                         <div className='mt-3'>
                             <a href="https://github.com/IFNMG-teo-Development-team">
-                                <Button className='d-flex align-items-center justify-content-center rounded-circle icone'>
-                                    <BsGithub className="" />
-                                </Button>{' '} 
+                                <Avatar className='d-flex align-items-center justify-content-center icone'>
+                                    <GitHubIcon />
+                                </Avatar>
                             </a>
-                            
+
                         </div>
-                    </Col>
-                </Row>
+                    </Grid>
+                </Grid>
             </Container>
 
             <div className='mt-4 bg-azul d-flex align-items-center justify-content-center copyright'>
-                <Container className="d-flex align-items-center justify-content-between p-2 m-1 pt-4 w-100 text-bg-dark copyright">
-                    <p className='color-branco'>© Copyright PingCast Corp. All Rights Reserved</p>
-                    <p className='color-branco'>UUUII, ele gosta!! Feito com ❤ pelos alunos do IFNMG</p>
+                <Container className="d-flex align-items-center justify-content-between flex-column flex-md-row p-2 m-1 pt-4 w-100 text-bg-dark copyright">
+                    <Texto value="© Copyright PingCast Corp. All Rights Reserved" className='color-branco' as="p" />
+                    <Texto value="Feito com ❤ pelos alunos do IFNMG" className='color-branco' as="p" />
                 </Container>
             </div>
         </footer>

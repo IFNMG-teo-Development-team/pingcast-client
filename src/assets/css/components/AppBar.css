@@ -1,33 +1,66 @@
-.navbar-brand {
+header {
+    background-color: var(--bg) !important;
+    box-shadow: 0 2px 40px #CFCFCF !important;
+}
+
+header .MuiTypography-root {
     margin: 0;
     padding: 0;
     line-height: 1;
     font-weight: 600;
     font-size: 1.3em;
     font-family: var(--fonte--jost);
-    color: #37517e !important;
+    color: var(--azul-escuro-titulo) !important;
 }
 
-header nav{
-    padding: 5px !important;
-    box-shadow: 0 2px 40px #CFCFCF;
+header button, .lista-header a, .lista-header .css-1fb7cvw-MuiButtonBase-root-MuiButton-root  {
+    color: var(--cinza-claro) !important;
+    text-decoration: none;
+    font-family: var(--fonte--simples) !important;
+    background-color: none !important;
 }
 
-.buy-me:hover img{
+header button:hover, .lista-header a {
+    color: var(--cinza-texto);
+}
+
+header .logo {
+    color: var(--cinza-claro);
+    font-family: var(--fonte--simples);
+    text-decoration: none;
+
+    display: flex;
+    align-items: center;
+}
+
+header .MuiTypography-root,
+header .logo p {
+    letter-spacing: normal;
+}
+
+header .logo:hover {
+    color: var(--cinza-claro);
+}
+
+header a {
+    text-decoration: none;
+}
+
+.buy-me:hover img {
     animation: ping 1s linear;
 }
 
 @keyframes ping {
     0% {
-        transform: rotate(-30deg);
+        transform: rotate(-20deg);
     }
 
     30% {
-        transform: rotate(30deg);
+        transform: rotate(20deg);
     }
 
     60% {
-        transform: rotate(-30deg);
+        transform: rotate(-20deg);
     }
 
     90% {
@@ -35,20 +68,6 @@ header nav{
     }
 }
 
-nav .opc {
-    color: var(--cinza-claro);
-    text-decoration: none;
-    font-family: var(--fonte--simples);
-}
-
-nav .opc:hover {
+.lista-header a li p{
     color: var(--cinza-texto);
-}
-
-nav .brand {
-    color: var(--cinza-claro);
-    font-family: var(--fonte--simples);
-}
-nav .brand:hover {
-    color: var(--cinza-claro);
 }

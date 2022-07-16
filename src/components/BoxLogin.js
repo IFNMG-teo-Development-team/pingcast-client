@@ -4,20 +4,20 @@ import '../assets/css/components/BoxLogin.css'
 
 {/* Componentes*/ }
 import Texto from '../components/Texto'
-import Box from '@mui/material/Box';
-import IconButton from '@mui/material/IconButton';
-import OutlinedInput from '@mui/material/OutlinedInput';
-import InputLabel from '@mui/material/InputLabel';
-import InputAdornment from '@mui/material/InputAdornment';
-import FormControl from '@mui/material/FormControl';
-import TextField from '@mui/material/TextField';
-import Visibility from '@mui/icons-material/Visibility';
-import VisibilityOff from '@mui/icons-material/VisibilityOff';
-import Grid from '@mui/material/Grid';
-import Switch from '@mui/material/Switch';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Button from '@mui/material/Button';
-import { styled } from '@mui/material/styles';
+import Box from '@mui/material/Box'
+import IconButton from '@mui/material/IconButton'
+import OutlinedInput from '@mui/material/OutlinedInput'
+import InputLabel from '@mui/material/InputLabel'
+import InputAdornment from '@mui/material/InputAdornment'
+import FormControl from '@mui/material/FormControl'
+import TextField from '@mui/material/TextField'
+import Visibility from '@mui/icons-material/Visibility'
+import VisibilityOff from '@mui/icons-material/VisibilityOff'
+import Grid from '@mui/material/Grid'
+import Switch from '@mui/material/Switch'
+import FormControlLabel from '@mui/material/FormControlLabel'
+import Button from '@mui/material/Button'
+import { styled } from '@mui/material/styles'
 
 {/* Ícones */ }
 import GitHubIcon from '@mui/icons-material/GitHub';
@@ -122,7 +122,7 @@ const BoxLogin = () => {
                     />
                 </FormControl>
 
-                <Grid container fullWidth sx={{ m: 1, display: 'flex', alignItems: 'center' }} >
+                <Grid container sx={{ m: 1, display: 'flex', alignItems: 'center' }} >
                     <Grid item xs={6} sx={{ p: 1 }}>
                         <FormControlLabel className="label-reduce color-cinza-claro" value="agree" control={
                             <LogSwitch id="check-logged" inputProps={{ 'aria-label': 'switch design' }} />

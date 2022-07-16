@@ -4,6 +4,10 @@ footer {
 footer div {
     font-family: var(--fonte--jost);
 }
+footer ul {
+    padding: 0!important;
+    padding-top: 5px!important;
+}
 footer h3 {
     font-size: 28px;
     margin: 0 0 10px 0;
@@ -26,17 +30,16 @@ footer p {
     margin-bottom: 0;
     font-family: "Jost", sans-serif;
     color: #5e5e5e;
+    text-align: justify;
 }
-footer .nav a {
+footer a {
     list-style: none;
     padding: 0;
     margin: 0;
     text-decoration: none;
-}
-footer a {
-    padding: 10px 0 !important;
     display: flex !important;
     align-items: center !important;
+    margin-bottom: 5px;
 }
 
 footer .nav a:first-child {
@@ -57,9 +60,12 @@ footer a svg {
 footer .icone {
     border: none;
     padding: 12px;
+    padding-left: 13px;
     background-color: var(--azul-degrade) !important;
 }
-
+footer .icone:hover {
+    background-color: #0218db !important;
+}
 footer .icone svg {
     fill: white;
 }

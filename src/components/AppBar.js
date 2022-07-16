@@ -1,63 +1,197 @@
-import React from 'react'
+import * as React from 'react';
 import '../assets/css/components/AppBar.css'
 
 {/* Componentes*/ }
-import Container from 'react-bootstrap/Container'
+import AppBar from '@mui/material/AppBar';
+import Box from '@mui/material/Box';
+import Toolbar from '@mui/material/Toolbar';
+import IconButton from '@mui/material/IconButton';
+import Typography from '@mui/material/Typography';
+import MenuIcon from '@mui/icons-material/Menu';
+import Container from '@mui/material/Container';
+import Button from '@mui/material/Button';
+import ImageListItem from '@mui/material/ImageListItem';
+import MenuItem from '@mui/material/MenuItem';
 import { NavLink } from "react-router-dom";
+
+import Drawer from '@mui/material/Drawer';
+import List from '@mui/material/List';
+import Texto from '../components/Texto'
+import ListItemIcon from '@mui/material/ListItemIcon';
+import Divider from '@mui/material/Divider';
+
+{/* Ícones */ }
 import logo from '../assets/img/spotify.png'
 import iconeCafe from '../assets/img/coffee.png'
-import Nav from 'react-bootstrap/Nav';
-import Navbar from 'react-bootstrap/Navbar';
-import Button from 'react-bootstrap/Button'
+import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 
-const PingCastAppBar = () => {
+{/* Itens do menu de forma dinâmica */ }
+const menuList = [
+    {
+        "id": 1,
+        "name": "Home",
+        "url": "/"
+    },
+    {
+        "id": 2,
+        "name": "Sobre",
+        "url": "/sobre"
+    }
+]
 
-    return (
-        <header>
-            <Navbar bg="light" expand="md" fixed="top">
-                <Container>
-                    <Navbar.Brand className="d-flex align-items-center justify-content-center">
-                        <NavLink to="/" className="brand p-2 d-flex align-items-center text-decoration-none">
+const NavBar = () => {
+    const [anchorElNav, setAnchorElNav] = React.useState([]);
+
+    const handleOpenNavMenu = (event) => {
+        setAnchorElNav(event.currentTarget);
+    };
+    const handleCloseNavMenu = () => {
+        setAnchorElNav(null);
+    };
+
+    const [state, setState] = React.useState({ right: false });
+
+    const toggleDrawer = (anchor, open) => (event) => {
+        if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
+            return;
+        }
+        setState({ ...state, [anchor]: open });
+    };
+
+    const list = (anchor) => (
+        <Box
+            sx={{ width: anchor === 'top' || anchor === 'bottom' ? 'auto' : 250 }}
+            role="presentation"
+            onClick={toggleDrawer(anchor, false)}
+            onKeyDown={toggleDrawer(anchor, false)}
+        >
+
+            <Texto value="MENU PRINCIPAL" as="h4" className='mb-2 mt-3 titulo text-center' />
+
+            <List className="lista-header">
+                {menuList.map((page) => (
+                    <NavLink to={page.url}>
+                        <MenuItem key={page.id} onClick={handleCloseNavMenu}>
+                            <ListItemIcon>
+                                <ArrowForwardIosIcon fontSize="small" />
+                            </ListItemIcon>
+                            <Typography textAlign="center">{page.name}</Typography>
+                        </MenuItem>
+                    </NavLink>
+                ))}
+
+                <Divider />
+
+                <NavLink to="donate" className='buy-me d-flex justify-content-center'>
+                    <Button className="degrade-azul px-2" sx={{ my: 2, display: 'flex', p: '3px' }}>
+                        <ImageListItem sx={{ mr: 1 }} >
                             <img
-                                src={logo}
                                 width="30"
                                 height="30"
-                                className="d-inline-block align-top me-2"
-                                alt="PingCast logo"
+                                src={iconeCafe}
                             />
+                        </ImageListItem>
+                       
+                        <Typography textAlign="center">Buy me a coffee</Typography>
+                    </Button>
+                </NavLink>
+
+            </List>
+        </Box>
+    )
+
+
+    return (
+        <AppBar position="fixed">
+            <Container maxWidth="xl">
+                <Toolbar disableGutters sx={{ display: 'flex', alignItems: 'center' }}>
+
+                    {/* Logo */}
+                    <Typography
+                        variant="h6"
+                        noWrap
+                        component="span"
+                        sx={{
+                            mr: 2,
+                            display: 'flex',
+                            fontFamily: 'monospace',
+                            fontWeight: 700,
+                            letterSpacing: '.3rem',
+                            color: 'inherit',
+                            textDecoration: 'none',
+                        }}
+                    >
+
+                        <img
+                            src={logo}
+                            width="30"
+                            height="30"
+                            className="me-2"
+                            alt="PingCast logo"
+                        />
+
+                        <NavLink to="/" className="logo">
                             PingCast
                         </NavLink>
-                    </Navbar.Brand>
+                    </Typography>
 
-                    <Navbar.Toggle aria-controls="appbar" />
+                    {/* Grade de opçoes da navbar dentro do icone menu | para tela pequena */}
+                    <Box sx={{ display: { xs: 'flex', md: 'none' }, marginLeft: 'auto' }}>
+                        {['right'].map((anchor) => (
+                            <React.Fragment key={anchor}>
+                                <IconButton
+                                    size="large"
+                                    aria-label="account of current user"
+                                    aria-controls="menu-appbar"
+                                    aria-haspopup="true"
+                                    onClick={toggleDrawer(anchor, true)}
+                                    color="inherit">
+                                    <MenuIcon />
+                                </IconButton>
 
-                    <Navbar.Collapse id="appbar">
-                        <Nav className="ms-auto d-flex align-items-center">
-                            <NavLink to="/" className="opc p-2">
-                                Home
+                                <Drawer
+                                    anchor={anchor}
+                                    open={state[anchor]}
+                                    onClose={toggleDrawer(anchor, false)}>
+                                    {list(anchor)}
+                                </Drawer>
+                            </React.Fragment>
+                        ))}
+                    </Box>
+
+                    {/* Grade de opçoes da navbar | para tela grande */}
+                    <Box sx={{ display: { xs: 'none', md: 'flex' }, marginLeft: 'auto', alignItems: 'center' }}>
+                        {menuList.map((page) => (
+                            <NavLink to={page.url}>
+                                <Button
+                                    key={page.id}
+                                    onClick={handleCloseNavMenu}
+                                    sx={{ my: 2, color: 'white', display: 'block' }}
+                                >
+                                    {page.name}
+                                </Button>
                             </NavLink>
+                        ))}
+                        <NavLink to="donate" className='buy-me ms-4'>
+                            <Button className="degrade-azul px-2" sx={{ my: 2, display: 'flex', p: '3px' }}>
 
-                            <NavLink to="sobre" className="opc p-2 text-bg-light">
-                                Sobre
-                            </NavLink>
-
-                            <NavLink to="donate" className="d-flex align-items-center ms-5 buy-me text-decoration-none">
-                                <Button className="degrade-azul">
+                                <ImageListItem sx={{ mr: 1 }} >
                                     <img
                                         width="30"
                                         height="30"
-                                        className="me-0 me-md-2"
                                         src={iconeCafe}
                                     />
-                                    Buy me a coffee
-                                </Button>
-                            </NavLink>
-                        </Nav>
-                    </Navbar.Collapse>
-                </Container>
-            </Navbar>
-        </header >
-    )
-}
+                                </ImageListItem>
+                                Buy me a coffee
+                            </Button>
+                        </NavLink>
 
-export default PingCastAppBar
+                    </Box>
+
+
+                </Toolbar>
+            </Container>
+        </AppBar >
+    );
+};
+export default NavBar;
