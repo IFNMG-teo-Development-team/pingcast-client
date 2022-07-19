@@ -1,5 +1,6 @@
 .degrade-azul {
     background: linear-gradient(310deg, var(--azul-degrade), var(--azul-claro-degrade));
+    color: white !important;
 }
 
 button.degrade-azul {

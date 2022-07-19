@@ -28,12 +28,12 @@ import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 {/* Itens do menu de forma dinâmica */ }
 const menuList = [
     {
-        "id": 1,
+        "id": 0,
         "name": "Home",
         "url": "/"
     },
     {
-        "id": 2,
+        "id": 1,
         "name": "Sobre",
         "url": "/sobre"
     }
@@ -70,9 +70,9 @@ const NavBar = () => {
 
             <List className="lista-header">
                 {menuList.map((page) => (
-                    <NavLink to={page.url}>
-                        <MenuItem key={page.id} onClick={handleCloseNavMenu}>
-                            <ListItemIcon>
+                    <NavLink to={page.url} key={page.id}>
+                        <MenuItem onClick={handleCloseNavMenu} key={page.id}>
+                            <ListItemIcon >
                                 <ArrowForwardIosIcon fontSize="small" />
                             </ListItemIcon>
                             <Typography textAlign="center">{page.name}</Typography>
@@ -82,8 +82,8 @@ const NavBar = () => {
 
                 <Divider />
 
-                <NavLink to="donate" className='buy-me d-flex justify-content-center'>
-                    <Button className="degrade-azul px-2" sx={{ my: 2, display: 'flex', p: '3px' }}>
+                <NavLink to="donate" className='buy-me d-flex justify-content-center' key={33}>
+                    <Button className="degrade-azul px-2" sx={{ my: 2, display: 'flex', p: '3px' }} >
                         <ImageListItem sx={{ mr: 1 }} >
                             <img
                                 width="30"
@@ -91,11 +91,10 @@ const NavBar = () => {
                                 src={iconeCafe}
                             />
                         </ImageListItem>
-                       
+
                         <Typography textAlign="center">Buy me a coffee</Typography>
                     </Button>
                 </NavLink>
-
             </List>
         </Box>
     )
@@ -162,7 +161,7 @@ const NavBar = () => {
                     {/* Grade de opçoes da navbar | para tela grande */}
                     <Box sx={{ display: { xs: 'none', md: 'flex' }, marginLeft: 'auto', alignItems: 'center' }}>
                         {menuList.map((page) => (
-                            <NavLink to={page.url}>
+                            <NavLink to={page.url} key={page.id}>
                                 <Button
                                     key={page.id}
                                     onClick={handleCloseNavMenu}

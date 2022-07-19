@@ -18,6 +18,7 @@ import Switch from '@mui/material/Switch'
 import FormControlLabel from '@mui/material/FormControlLabel'
 import Button from '@mui/material/Button'
 import { styled } from '@mui/material/styles'
+import axios from 'axios'
 
 {/* Ícones */ }
 import GitHubIcon from '@mui/icons-material/GitHub';
@@ -25,12 +26,22 @@ import GoogleIcon from '@mui/icons-material/Google';
 
 const BoxLogin = () => {
     const [values, setValues] = React.useState({
-        amount: '',
+        email: '',
         password: '',
-        weight: '',
-        weightRange: '',
-        showPassword: false,
     });
+
+    const sendForm = (evento) => {
+        evento.preventDefault()
+
+        axios.post('http://pingcast.duckdns.org:5000/login', {
+            email: values.email,
+            password: values.password
+        }).then(() => {
+            alert("ah mamaco macacooo")
+        }).catch((erro) => (
+            alert("erro: "+erro)
+        ))
+    }
 
     const handleChange = (prop) => (event) => {
         setValues({ ...values, [prop]: event.target.value });
@@ -92,11 +103,11 @@ const BoxLogin = () => {
 
     return (
         <>
-            <Box component="form" sx={{ display: 'flex', flexWrap: 'wrap', width: '75%' }}>
+            <Box onSubmit={sendForm} component="form" sx={{ display: 'flex', flexWrap: 'wrap', width: '75%' }}>
 
                 <Texto value="Email" as="p" className='descricao' />
-                <TextField fullWidth className="rounded-lg" sx={{ mt: 1 }} id="cmp-email" 
-                label="Digite seu email" variant="outlined" size="small" />
+                <TextField fullWidth className="rounded-lg" sx={{ mt: 1 }} id="cmp-email"
+                    label="Digite seu email" onChange={handleChange('email')} variant="outlined" size="small" />
 
                 <Texto value="Senha" as="p" className='descricao mt-3' />
                 <FormControl fullWidth sx={{ mt: 1 }} variant="outlined" size="small">
@@ -140,11 +151,11 @@ const BoxLogin = () => {
                     as="p" className='text-center mt-4 color-cinza-claro' />
 
                 <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                    <Button sx={{ m: 1, p:1, px:5 }} variant="outlined">
+                    <Button sx={{ m: 1, p: 1, px: 5 }} variant="outlined">
                         <GoogleIcon fontSize="small" className='me-1' />
                         Google
                     </Button>
-                    <Button sx={{ m: 1, p:1, px:5 }} variant="outlined">
+                    <Button sx={{ m: 1, p: 1, px: 5 }} variant="outlined">
                         <GitHubIcon fontSize="small" className='me-1' />
                         GitHub
                     </Button>
