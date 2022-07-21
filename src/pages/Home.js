@@ -12,12 +12,14 @@ import HeadPage from '../components/HeadPage'
 import Button from '@mui/material/Button'
 import { NavLink } from "react-router-dom";
 
-import { isAuthenticated, logout } from '../services/auth'
+import { isAuthenticated } from '../services/auth'
+
+import Logo from '../assets/img/logo.png'
 
 const PageNotLogged = () => {
     return (
         <main>
-            <HeadPage titulo="Home" />
+            <HeadPage />
             <Container maxWidth="lg" className='h-100 mt-5'>
                 <Grid container spacing={2}>
 
@@ -34,9 +36,9 @@ const PageNotLogged = () => {
                     <Grid item xs={6} sx={{ display: { xs: 'none', md: 'flex', lg: 'flex' } }} className="align-items-center justify-content-center">
                         <Box id='bg' className="h-100"></Box>
                         <Box className="bg-texto">
-                            <Texto value="PingCast" as="h1" className="mb-3" />
+                            <img src={Logo} width="400px" />
                             <Texto value="A 127.0.0.1 favorita do Dev"
-                                as="p" className="color-cinza-claro text-center" />
+                                as="p" className="color-cinza-claro" />
                         </Box>
                     </Grid>
                 </Grid>
@@ -44,29 +46,17 @@ const PageNotLogged = () => {
 
         </main>
     )
-}
+}   
 
 const PageLogged = () => {
-
-    const HandleLogOut = (evento) => {
-        evento.preventDefault()
-        logout()
-    }
 
     return (
         <main>
             <HeadPage titulo="Home" />
             <Container maxWidth="lg" className='h-100 mt-5'>
-                <h1>vc dnv? Bem vindo de volta kkkk</h1>
+                <h1 className='text-center'>Bem vindo de volta</h1>
             </Container>
 
-                <Button
-                    onClick={HandleLogOut}
-                    sx={{ my: 2, color: 'black', display: 'block' }}
-                >
-                    Sair
-                </Button>
-   
         </main>
     )
 }

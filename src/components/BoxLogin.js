@@ -34,7 +34,7 @@ const BoxLogin = () => {
     const sendForm = async (evento) => {
         evento.preventDefault()
 
-        await api.post(`/login`, {
+        await api.post(`/perfil/login`, {
             "email": values.email,
             "password": values.password
         })

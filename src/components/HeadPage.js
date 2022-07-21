@@ -1,6 +1,6 @@
 import React from 'react'
 import { Helmet } from 'react-helmet'
-import iconeURL from '../assets/img/spotify.png'
+import iconeURL from '../assets/img/icone.png'
 
 const HeadPage = (props) => {
     return (
