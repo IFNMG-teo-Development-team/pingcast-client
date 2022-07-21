@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 
 {/* Componentes*/ }
 import HeadPage from '../components/HeadPage'

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link } from "react-router-dom"
 import '../assets/css/components/BoxLogin.css'
 
@@ -18,7 +18,7 @@ import Switch from '@mui/material/Switch'
 import FormControlLabel from '@mui/material/FormControlLabel'
 import Button from '@mui/material/Button'
 import { styled } from '@mui/material/styles'
-import axios from 'axios'
+import api from '../services/api'
 
 {/* Ícones */ }
 import GitHubIcon from '@mui/icons-material/GitHub';
@@ -30,17 +30,16 @@ const BoxLogin = () => {
         password: '',
     });
 
+    const [token, setToken] = useState([])
+
     const sendForm = (evento) => {
         evento.preventDefault()
 
-        axios.post('http://pingcast.duckdns.org:5000/login', {
-            email: values.email,
-            password: values.password
-        }).then(() => {
-            alert("ah mamaco macacooo")
-        }).catch((erro) => (
-            alert("erro: "+erro)
-        ))
+        api.post(`/login`, {
+            "email": values.email
+        }).then(res => {
+            console.log("bem vindo ")
+        })
     }
 
     const handleChange = (prop) => (event) => {

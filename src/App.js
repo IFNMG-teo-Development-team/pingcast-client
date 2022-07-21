@@ -13,9 +13,11 @@ import CreateAccount from './pages/CreateAccount'
 import AppBar from './components/AppBar'
 import Footer from './components/Footer'
 
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes} from "react-router-dom";
 
-function App() {
+import { isAuthenticated } from "./services/auth";
+
+const App = () => {
   return (
     <BrowserRouter>
       <AppBar />
