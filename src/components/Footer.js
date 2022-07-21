@@ -81,7 +81,7 @@ const Footer = () => {
             </Container>
 
             <div className='mt-4 bg-azul d-flex align-items-center justify-content-center copyright'>
-                <Container className="d-flex align-items-center justify-content-between flex-column flex-md-row p-2 m-1 pt-4 w-100 text-bg-dark copyright">
+                <Container className="d-flex align-items-center justify-content-between flex-column flex-md-row p-2 m-1 w-100 copyright">
                     <Texto value="© Copyright PingCast Corp. All Rights Reserved" className='color-branco' as="p" />
                     <Texto value="Feito com ❤ pelos alunos do IFNMG" className='color-branco' as="p" />
                 </Container>

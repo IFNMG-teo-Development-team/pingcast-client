@@ -20,6 +20,8 @@ import Texto from '../components/Texto'
 import ListItemIcon from '@mui/material/ListItemIcon';
 import Divider from '@mui/material/Divider';
 
+import { isAuthenticated } from '../services/auth'
+
 {/* Ícones */ }
 import logo from '../assets/img/spotify.png'
 import iconeCafe from '../assets/img/coffee.png'
@@ -82,8 +84,9 @@ const NavBar = () => {
 
                 <Divider />
 
-                <NavLink to="donate" className='buy-me d-flex justify-content-center' key={33}>
-                    <Button className="degrade-azul px-2" sx={{ my: 2, display: 'flex', p: '3px' }} >
+                <NavLink to="donate" className='buy-me d-flex justify-content-center'>
+                    <Button className="degrade-azul px-2" sx={{ my: 2, display: 'flex', p: '3px', color: 'white' }}>
+
                         <ImageListItem sx={{ mr: 1 }} >
                             <img
                                 width="30"
@@ -91,14 +94,30 @@ const NavBar = () => {
                                 src={iconeCafe}
                             />
                         </ImageListItem>
-
-                        <Typography textAlign="center">Buy me a coffee</Typography>
+                        Buy me a coffee
                     </Button>
                 </NavLink>
             </List>
         </Box>
     )
 
+    const ListaNav = () => {
+        return (
+            <>
+            {menuList.map((page) => (
+                <NavLink to={page.url} key={page.id}>
+                    <Button
+                        key={page.id}
+                        onClick={handleCloseNavMenu}
+                        sx={{ my: 2, color: 'white', display: 'block' }}
+                    >
+                        {page.name}
+                    </Button>
+                </NavLink>
+            ))}
+            </>
+        )
+    }
 
     return (
         <AppBar position="fixed">
@@ -160,17 +179,8 @@ const NavBar = () => {
 
                     {/* Grade de opçoes da navbar | para tela grande */}
                     <Box sx={{ display: { xs: 'none', md: 'flex' }, marginLeft: 'auto', alignItems: 'center' }}>
-                        {menuList.map((page) => (
-                            <NavLink to={page.url} key={page.id}>
-                                <Button
-                                    key={page.id}
-                                    onClick={handleCloseNavMenu}
-                                    sx={{ my: 2, color: 'white', display: 'block' }}
-                                >
-                                    {page.name}
-                                </Button>
-                            </NavLink>
-                        ))}
+                        {isAuthenticated() ?  <ListaNav /> : <ListaNav />}
+
                         <NavLink to="donate" className='buy-me ms-4'>
                             <Button className="degrade-azul px-2" sx={{ my: 2, display: 'flex', p: '3px' }}>
 

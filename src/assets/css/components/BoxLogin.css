@@ -54,7 +54,7 @@ button.degrade-azul:hover {
     height: 100%;
     width: 50%;
 
-    background: linear-gradient(270deg, rgba(248, 249, 250, 0) 0%, white 95.13%), url("../../img/bg.png");
+    background: linear-gradient(270deg, rgba(248, 249, 250, 0) 0%, white 99.13%), url("../../img/bg.png");
     background-repeat: no-repeat;
     background-size: cover;
 

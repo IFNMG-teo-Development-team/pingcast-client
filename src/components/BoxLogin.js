@@ -19,6 +19,7 @@ import FormControlLabel from '@mui/material/FormControlLabel'
 import Button from '@mui/material/Button'
 import { styled } from '@mui/material/styles'
 import api from '../services/api'
+import { login, getToken, isAuthenticated } from '../services/auth'
 
 {/* Ícones */ }
 import GitHubIcon from '@mui/icons-material/GitHub';
@@ -30,16 +31,32 @@ const BoxLogin = () => {
         password: '',
     });
 
-    const [token, setToken] = useState([])
-
-    const sendForm = (evento) => {
+    const sendForm = async (evento) => {
         evento.preventDefault()
 
-        api.post(`/login`, {
-            "email": values.email
-        }).then(res => {
-            console.log("bem vindo ")
+        await api.post(`/login`, {
+            "email": values.email,
+            "password": values.password
         })
+            .then(res => {
+
+                if (res.data.status === 200 && isAuthenticated() === false) {
+                    login(res.data.token)
+                    window.location.reload();
+                }
+                else if (isAuthenticated()){
+                    console.log("login já efetuado, espere um pouco!")
+                }
+                else if(res.data.status === 204) {
+                    console.log(res.data.mensagem)
+                }
+                else {
+                    console.log(res)
+                }
+            })
+            .catch(erro => {
+                console.log(erro)
+            })
     }
 
     const handleChange = (prop) => (event) => {
