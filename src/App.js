@@ -1,42 +1,51 @@
 import React from 'react'
+import './assets/css/App.css'
+import { BrowserRouter, Route, Routes } from "react-router-dom"
+import { isAuthenticated } from "./services/auth"
 
-import './assets/css/base/base.css'
-
-{/* Paginas */ }
+// Paginas
 import Home from './pages/Home'
-import About from './pages/About'
-import Donate from './pages/Donate'
+import Cadastro from './pages/Cadastro'
 import NotFound from './pages/NotFound'
-import CreateAccount from './pages/CreateAccount'
+import Dashboard from './pages/Dashboard'
 
-{/* Componentes */ }
-import AppBar from './components/AppBar'
+//Componentes
+import NavBar from './components/NavBar'
 import Footer from './components/Footer'
 
-import { BrowserRouter, Route, Routes} from "react-router-dom";
-
-import { isAuthenticated } from "./services/auth";
-
-const App = () => {
+function App() {
   return (
     <BrowserRouter>
-      <AppBar />
+      {
+        isAuthenticated() ?
+          (
+            /* ROTAS AUTENTIFICADA */
+            <>
+              <Routes>
+                <Route exact path="/" element={<Dashboard />} /> {/* PÁGINA INICIAL */}
 
-      <Routes>
-        <Route exact path="/" element={<Home />}/>
+                <Route path="*" element={<NotFound />} />
+              </Routes>
+            </>
+          )
+          :
+          (
+            /* ROTAS SEM AUTENTIFICAR */
+            <>
+              <Routes>
+                <NavBar />
+                <Route exact path="/" element={<Home />} /> {/* PÁGINA INICIAL */}
 
-        <Route path="sobre" element={<About />} />
+                <Route path="/cadastrar" element={<Cadastro />} /> {/* PÁGINA DE CADASTRO */}
 
-        <Route path="donate" element={<Donate />} />
-
-        <Route path="criar-conta" element={<CreateAccount />} />
-
-        <Route path="*" element={<NotFound />} />
-      </Routes>
-
+                <Route path="*" element={<NotFound />} />
+              </Routes>
+            </>
+          )
+      }
       <Footer />
     </BrowserRouter>
-  )
+  );
 }
 
-export default App
+export default App;

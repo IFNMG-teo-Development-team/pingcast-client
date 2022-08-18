@@ -1,72 +1,58 @@
-import React from 'react';
-import '../assets/css/components/BoxLogin.css'
+import React from 'react'
+import Main from '../components/Main'
 
-{/* Componentes*/ }
-import Container from '@mui/material/Container'
+// Componentes
 import Box from '@mui/material/Box'
 import Grid from '@mui/material/Grid'
 import { Link } from "react-router-dom"
+import HeadPage from '../components/Head'
 import BoxLogin from '../components/BoxLogin'
-import Texto from '../components/Texto'
-import HeadPage from '../components/HeadPage'
-import Button from '@mui/material/Button'
-import { NavLink } from "react-router-dom";
-
-import { isAuthenticated } from '../services/auth'
+import Typography from '@mui/material/Typography'
 
 import Logo from '../assets/img/logo.png'
+import Bg from '../assets/img/studio-podcast.png'
 
-const PageNotLogged = () => {
+const Home = () => {
     return (
-        <main>
+        <Main maxWidth='lg' >
             <HeadPage />
-            <Container maxWidth="lg" className='h-100 mt-5'>
-                <Grid container spacing={2}>
+            <Grid container className='h-screen flex items-center'>
 
-                    <Grid item xs={12} md={6} sx={{ display: 'flex', alignItems: 'center', flexDirection: 'column' }}>
-                        <Texto value="Fazer Login" as="h2" className='mb-3 titulo' />
-                        <BoxLogin />
-                        <Box className='d-flex justify-content-center mt-4'>
-                            <Texto value="Ainda não tem uma conta?" as="p" className='texto-simples color-cinza-claro me-2' />
-                            <Link to="criar-conta" className='texto-simples color-azul text-decoration-none'>Criar conta</Link>
-                        </Box>
-                    </Grid>
+                <Grid item xs={12} md={6} className='flex items-center flex-col'>
+                    <Typography component="h2" className="mb-3 font-bold text-xl text-azul-300 font-opensans">
+                        Fazer Login
+                    </Typography>
 
+                    <BoxLogin />
 
-                    <Grid item xs={6} sx={{ display: { xs: 'none', md: 'flex', lg: 'flex' } }} className="align-items-center justify-content-center">
-                        <Box id='bg' className="h-100"></Box>
-                        <Box className="bg-texto">
-                            <img src={Logo} width="400px" />
-                            <Texto value="A 127.0.0.1 favorita do Dev"
-                                as="p" className="color-cinza-claro" />
-                        </Box>
-                    </Grid>
+                    <Box className='flex text-md justify-center mt-4'>
+                        <Typography component="p" className="text-cinza-200 mr-2">
+                            Ainda não tem uma conta?
+                        </Typography>
+                        <Link to="cadastrar" className='font-opensans text-azul-200 decoration-none'>Criar conta</Link>
+                    </Box>
                 </Grid>
-            </Container>
 
-        </main>
-    )
-}   
+                <Grid item xs={6} sx={{ display: { xs: 'none', md: 'flex', lg: 'flex' } }} className="items-center justify-center">
+                    <Box id='bg' className="h-100"></Box>
+                    <Box className="flex flex-col">
+                        <Box className='z-10'>
+                            <img src={Logo} width="400px" alt="logo da pagina"/>
+                            <Typography component="p" className="font-opensans text-cinza-200 me-2 font-medium text-xl">
+                                A 127.0.0.1 favorita do Dev
+                            </Typography>
+                        </Box>
 
-const PageLogged = () => {
-
-    return (
-        <main>
-            <HeadPage titulo="Home" />
-            <Container maxWidth="lg" className='h-100 mt-5'>
-                <h1 className='text-center'>Bem vindo de volta</h1>
-            </Container>
-
-        </main>
-    )
-}
-
-const HomePage = () => {
-    return (
-        <>
-            {isAuthenticated() ? <PageLogged /> : <PageNotLogged />}
-        </>
+                        <Box className="absolute inset-y-0 right-0 w-1/2">
+                            <img className="w-full h-full object-cover object-left-top"
+                                src={Bg}
+                                alt="banner" />
+                        </Box>
+                    </Box>
+                </Grid>
+            </Grid>
+        </Main>
     )
 }
 
-export default HomePage;
+export default Home

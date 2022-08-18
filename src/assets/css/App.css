@@ -1,0 +1,14 @@
+/* Importação das fontes (google fonts)*/
+@import url('https://fonts.googleapis.com/css2?family=Jost:wght@400&family=Open+Sans:wght@400&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body, html {
+  height: 100%;
+  background-color: #e8ebee;
+}
+main {
+  min-height: 100% !important;
+}

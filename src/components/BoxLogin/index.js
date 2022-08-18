@@ -1,9 +1,7 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import { Link } from "react-router-dom"
-import '../assets/css/components/BoxLogin.css'
 
-{/* Componentes*/ }
-import Texto from '../components/Texto'
+// Componentes
 import Box from '@mui/material/Box'
 import IconButton from '@mui/material/IconButton'
 import OutlinedInput from '@mui/material/OutlinedInput'
@@ -18,23 +16,49 @@ import Switch from '@mui/material/Switch'
 import FormControlLabel from '@mui/material/FormControlLabel'
 import Button from '@mui/material/Button'
 import { styled } from '@mui/material/styles'
-import api from '../services/api'
-import { login, getToken, isAuthenticated } from '../services/auth'
+import Typography from '@mui/material/Typography'
 
-{/* Ícones */ }
+import api from '../../services/api'
+import { login, isAuthenticated } from '../../services/auth'
+
+// Ícones
 import GitHubIcon from '@mui/icons-material/GitHub';
 import GoogleIcon from '@mui/icons-material/Google';
 
-const BoxLogin = () => {
+const BoxLogin = (props) => {
+
     const [values, setValues] = React.useState({
         email: '',
         password: '',
     });
 
+    const loginGithub = async (e) => {
+        e.preventDefault()
+
+        await api.get(`/login/github`)
+            .then(res => {
+                console.log(res.data)
+                // window.open(url, '_blank');
+            })
+            .catch(err => {
+                console.log(err)
+            })
+    }
+
+    const loginGoogle = async (e) => {
+        e.preventDefault()
+
+        await api.post(`/login/google`)
+            .then(res => {
+                console.log("it's ok")
+                // window.open(res.url, '_blank');
+            })
+    }
+
     const sendForm = async (evento) => {
         evento.preventDefault()
 
-        await api.post(`/perfil/login`, {
+        await api.post(`/api/login`, {
             "email": values.email,
             "password": values.password
         })
@@ -44,10 +68,10 @@ const BoxLogin = () => {
                     login(res.data.token)
                     window.location.reload();
                 }
-                else if (isAuthenticated()){
+                else if (isAuthenticated()) {
                     console.log("login já efetuado, espere um pouco!")
                 }
-                else if(res.data.status === 204) {
+                else if (res.data.status === 204) {
                     console.log(res.data.mensagem)
                 }
                 else {
@@ -121,11 +145,9 @@ const BoxLogin = () => {
         <>
             <Box onSubmit={sendForm} component="form" sx={{ display: 'flex', flexWrap: 'wrap', width: '75%' }}>
 
-                <Texto value="Email" as="p" className='descricao' />
-                <TextField fullWidth className="rounded-lg" sx={{ mt: 1 }} id="cmp-email"
+                <TextField fullWidth className="rounded-lg mb-4" sx={{ mt: 1 }} id="cmp-email"
                     label="Digite seu email" onChange={handleChange('email')} variant="outlined" size="small" />
 
-                <Texto value="Senha" as="p" className='descricao mt-3' />
                 <FormControl fullWidth sx={{ mt: 1 }} variant="outlined" size="small">
                     <InputLabel htmlFor="cmp-senha">Digite sua senha</InputLabel>
                     <OutlinedInput
@@ -149,30 +171,31 @@ const BoxLogin = () => {
                     />
                 </FormControl>
 
-                <Grid container sx={{ m: 1, display: 'flex', alignItems: 'center' }} >
+                <Grid className='font-opensans flex m-1 items-center' container>
                     <Grid item xs={6} sx={{ p: 1 }}>
-                        <FormControlLabel className="label-reduce color-cinza-claro" value="agree" control={
+                        <FormControlLabel className="text-cinza-200 text-sm md:text-md" value="agree" control={
                             <LogSwitch id="check-logged" inputProps={{ 'aria-label': 'switch design' }} />
                         } label="Permanecer logado" />
                     </Grid>
 
-                    <Grid item xs={6} sx={{ display: 'flex', alignItems: 'center', justifyContent: 'end' }}   ><Link to='/' className="label-reduce texto-simples">Esqueceu sua senha</Link></Grid>
+                    <Grid item xs={6} className="flex items-center justify-end"   ><Link sx={{}} to='/' className="text-azul-200 text-sm md:text-md font-semibold">Esqueceu sua senha</Link></Grid>
                 </Grid>
 
-                <Button fullWidth type="submit" className="w-100 degrade-azul shadow fw-bold p-2 rounded-lg" variant="contained">Entrar</Button>
+                <Button fullWidth type="submit" className=" shadow-md py-2 font-bold text-md rounded-lg bg-gradient-to-r from-azul-100 to-azul-200 group hover:scale-101" variant="contained">Entrar</Button>
             </Box>
 
-            <Box sx={{ width: '100%' }}>
-                <Texto value="Ou faça login com"
-                    as="p" className='text-center mt-4 color-cinza-claro' />
+            <Box className='w-full'>
+                <Typography component="p" className="text-center mt-4 mb-3 text-cinza-200">
+                    Ou faça login com
+                </Typography>
 
-                <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                    <Button sx={{ m: 1, p: 1, px: 5 }} variant="outlined">
-                        <GoogleIcon fontSize="small" className='me-1' />
+                <Box className="flex items-center justify-center gap-4">
+                    <Button onClick={loginGoogle} className="m-1 p-2 px-10 gap-2" variant="outlined">
+                        <GoogleIcon fontSize="small" />
                         Google
                     </Button>
-                    <Button sx={{ m: 1, p: 1, px: 5 }} variant="outlined">
-                        <GitHubIcon fontSize="small" className='me-1' />
+                    <Button onClick={loginGithub} className="m-1 p-2 px-10 gap-2" variant="outlined">
+                        <GitHubIcon fontSize="small" />
                         GitHub
                     </Button>
                 </Box>
