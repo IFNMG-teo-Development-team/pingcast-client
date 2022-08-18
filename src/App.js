@@ -16,34 +16,30 @@ import Footer from './components/Footer'
 function App() {
   return (
     <BrowserRouter>
+
       {
         isAuthenticated() ?
-          (
-            /* ROTAS AUTENTIFICADA */
-            <>
-              <Routes>
-                <Route exact path="/" element={<Dashboard />} /> {/* PÁGINA INICIAL */}
+          <> {/* Rotas para o usuário autentificado */}
+            <Routes>
+              <Route exact path="/" element={<Dashboard />} /> {/* PÁGINA INICIAL */}
 
-                <Route path="*" element={<NotFound />} />
-              </Routes>
-            </>
-          )
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+            <Footer />
+          </>
           :
-          (
-            /* ROTAS SEM AUTENTIFICAR */
-            <>
-              <Routes>
-                <NavBar />
-                <Route exact path="/" element={<Home />} /> {/* PÁGINA INICIAL */}
+          <> {/* Rotas para o usuário NÃO autentificado */}
+            <NavBar />
+            <Routes>
+              <Route exact path="/" element={<Home />} /> {/* PÁGINA INICIAL */}
 
-                <Route path="/cadastrar" element={<Cadastro />} /> {/* PÁGINA DE CADASTRO */}
+              <Route path="/cadastrar" element={<Cadastro />} /> {/* PÁGINA DE CADASTRO */}
 
-                <Route path="*" element={<NotFound />} />
-              </Routes>
-            </>
-          )
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+            <Footer />
+          </>
       }
-      <Footer />
     </BrowserRouter>
   );
 }
