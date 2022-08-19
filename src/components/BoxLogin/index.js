@@ -65,7 +65,7 @@ const BoxLogin = (props) => {
             .then(res => {
 
                 if (res.data.status === 200 && isAuthenticated() === false) {
-                    login(res.data.token)
+                    login(res.data.token, res.data.id)
                     window.location.reload();
                 }
                 else if (isAuthenticated()) {

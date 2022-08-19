@@ -160,8 +160,8 @@ const Form = () => {
                         <Grid container spacing={2} className='flex items-center justify-center'>
                             <Grid item xs={10} md={8} lg={6}>
                                 <TextField fullWidth className="rounded-lg mt-4"
-                                    label="Digite sua data" type={'text'} value={dados.birth} onChange={e => onFormUpdate('birth', e.target.value)}
-                                    variant="outlined" size="small" />
+                                    type={'date'} value={dados.birth} onChange={e => onFormUpdate('birth', e.target.value)}
+                                    size="small" min="1930-01-01" max={`2015-01-01`}/>
                             </Grid>
                         </Grid>
                     </Box>
@@ -215,7 +215,7 @@ const Form = () => {
                 })
                     .then(res => {
                         if (res.data.status === 200 && isAuthenticated() === false) {
-                            login(res.data.token)
+                            login(res.data.token, res.data.id)
                             window.location.href = '/';
                         }
                     })

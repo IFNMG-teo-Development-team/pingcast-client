@@ -5,7 +5,7 @@ import Container from '@mui/material/Container'
 const Main = (props) => {
     
     return (
-        <main className="bg-cinza-50">
+        <main className={props.bg || 'bg-cinza-50'}>
             <Container maxWidth={props.maxWidth || 'lg'} className={props.className || ''}>
                 {props.children}
             </Container>

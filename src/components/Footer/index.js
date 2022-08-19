@@ -25,7 +25,7 @@ const Footer = () => {
                         <Typography className='font-jost text-cinza-300 text-sm' component="p">
                             Teófilo Otoni, MG <br />
                             IFNMG <br />
-                            <strong>IFNMG: </strong><a href='https://www.ifnmg.edu.br/teofilo-otoni'>www.ifnmg.edu.br/teofilo-otoni/</a><br></br>
+                            <strong>IFNMG: </strong><a href='https://www.ifnmg.edu.br/teofilo-otoni' className='hover:underline'>www.ifnmg.edu.br/teofilo-otoni/</a><br></br>
                         </Typography>
                     </Grid>
 
