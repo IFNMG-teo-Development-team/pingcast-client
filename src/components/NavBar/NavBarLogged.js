@@ -12,7 +12,6 @@ import List from '@mui/material/List';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import Divider from '@mui/material/Divider';
 import Menu from '@mui/material/Menu';
-import { logout } from '../../services/auth'
 import Badge from '@mui/material/Badge';
 import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
@@ -28,7 +27,24 @@ import Logout from '@mui/icons-material/Logout';
 import NotificationsOutlined from '@mui/icons-material/NotificationsNone';
 import Notifications from '@mui/icons-material/Notifications';
 
+import { usePromise } from '@refetty/react'
+import * as Login  from '../../services/Login'
+import * as User from '../../models/Users'
+import { removeLogin, getUserId } from '../../client/auth'
+
+const teste = async () => {
+    const id = getUserId()
+    const profile = await User.get(id)
+    console.log(profile)
+
+    const kkk = await User.all()
+    console.log(kkk)
+}
+
 const NavBar = () => {
+
+    teste()
+
     // SOBRE O MENU DE NOTIFICAÇÕES
     const [anchorElBell, setAnchorElBell] = React.useState(null);
     const openBell = Boolean(anchorElBell);
@@ -40,9 +56,11 @@ const NavBar = () => {
     };
 
     // LOGOUT 
-    const handleLogOut = (evento) => {
+    const handleLogOut = async (evento) => {
         evento.preventDefault()
-        logout()
+
+        await Login.LogOut()
+        removeLogin()
     }
 
     // SOBRE O BTN DE OPC DE PERFIL
@@ -64,7 +82,7 @@ const NavBar = () => {
                     <TextField fullWidth className="rounded-lg mt-4"
                         label="Pesquisa" type={'search'}
                         variant="outlined" size="small" />
-                </Box>
+                </Box>  
 
                 <Box sx={{ display: 'flex', marginLeft: 'auto', alignItems: 'center' }}>
 

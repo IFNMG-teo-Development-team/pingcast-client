@@ -20,13 +20,15 @@ import Switch from '@mui/material/Switch'
 import FormControlLabel from '@mui/material/FormControlLabel'
 import { styled } from '@mui/material/styles'
 import { Link } from "react-router-dom"
-import { login, isAuthenticated } from "../../services/auth"
 
-import api from '../../services/api'
 import MenuItem from '@mui/material/MenuItem'
 import Select from '@mui/material/Select'
 
+import * as Login from '../../services/Login'
+import { storeLogin } from '../../client/auth';
+
 const Form = () => {
+
     // NOME DE CADA 'ETAPA'
     const [steps, setSteps] = React.useState(["Dados de usuário", "Informações pessoais", "Finalização"])
 
@@ -147,10 +149,11 @@ const Form = () => {
                                         onChange={e => onFormUpdate('sexo', e.target.value)}
                                     >
                                         <MenuItem value="">
-                                            <em>None</em>
+                                            <em>Selecione uma opção</em>
                                         </MenuItem>
                                         <MenuItem value={'masculino'}>Masculino</MenuItem>
                                         <MenuItem value={'feminino'}>Feminino</MenuItem>
+                                        <MenuItem value={'outro'}>Outro</MenuItem>
                                     </Select>
                                 </FormControl>
                             </Grid>
@@ -161,7 +164,7 @@ const Form = () => {
                             <Grid item xs={10} md={8} lg={6}>
                                 <TextField fullWidth className="rounded-lg mt-4"
                                     type={'date'} value={dados.birth} onChange={e => onFormUpdate('birth', e.target.value)}
-                                    size="small" min="1930-01-01" max={`2015-01-01`}/>
+                                    size="small" min="1930-01-01" max={`2015-01-01`} />
                             </Grid>
                         </Grid>
                     </Box>
@@ -198,30 +201,19 @@ const Form = () => {
     const sendForm = async (e) => {
         e.preventDefault()
 
-        // FAZ O CADASTRO
-        await api.post(`/api/perfil`, {
-            "username": dados.username,
-            "nome": dados.nome,
-            "sobrenome": dados.sobrenome,
-            "email": dados.email,
-            "senha": dados.senha,
-            "sexo": dados.sexo,
-            "birth": dados.birth,
-        })
-            .then(res => {
-                api.post(`/api/login`, {
-                    "email": dados.email,
-                    "password": dados.senha
-                })
-                    .then(res => {
-                        if (res.data.status === 200 && isAuthenticated() === false) {
-                            login(res.data.token, res.data.id)
-                            window.location.href = '/';
-                        }
-                    })
-                    .catch(err => console.log(console.log(err)))
-            })
-            .catch(err => console.log(console.log(err)))
+        let isCompleted = true
+
+        // VALIDAÇÕES
+        if (dados.username.length === 0) isCompleted = false
+
+
+        const res = await Login.SignUp(dados)
+        console.log(res)
+        if (res.data.status === 200) {
+            storeLogin(res.data.token, res.data.id)
+            window.location.href = '/'
+        }
+
     }
 
     const onFormUpdate = (cmp, value) => {
@@ -289,21 +281,22 @@ const Form = () => {
             <>
                 {activeSteps === steps.length ? (<Button onClick={sendForm} variant="contained" > Terminar cadastrado e acessar minha conta </Button>)
                     :
-                    (<>{getStepsContent(activeSteps + 1)}
-                        <Box className='flex gap-5 mt-12'>
-                            <Button onClick={handleNext} variant="contained">
-                                {activeSteps === steps.length ? "Final" : "Próximo"}
-                            </Button>
+                    (
+                        <>
+                            {getStepsContent(activeSteps + 1)}
+                            <Box className='flex gap-5 mt-12'>
+                                <Button onClick={handleNext} variant="contained">
+                                    {activeSteps === steps.length ? "Final" : "Próximo"}
+                                </Button>
 
-                            {activeSteps === 0 ? <></> :
-                                <Button onClick={handleBack} variant="outlined">
-                                    Voltar
-                                </Button>}
-                        </Box>
-                    </>)}
+                                {activeSteps === 0 ? <></> :
+                                    <Button onClick={handleBack} variant="outlined">
+                                        Voltar
+                                    </Button>}
+                            </Box>
+                        </>
+                    )}
             </>
-
-
         </Box>
     )
 }

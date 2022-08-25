@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link } from "react-router-dom"
+import { Navigate } from "react-router-dom";
 
 // Componentes
 import Box from '@mui/material/Box'
@@ -18,14 +19,17 @@ import Button from '@mui/material/Button'
 import { styled } from '@mui/material/styles'
 import Typography from '@mui/material/Typography'
 
-import api from '../../services/api'
-import { login, isAuthenticated } from '../../services/auth'
+import * as Login from '../../services/Login'
+import * as User from '../../models/Users'
+import { storeLogin} from '../../client/auth';
+import { removeLogin, getUserId } from '../../client/auth'
 
 // Ícones
 import GitHubIcon from '@mui/icons-material/GitHub';
 import GoogleIcon from '@mui/icons-material/Google';
 
 const BoxLogin = (props) => {
+    const [statusLog, setStatusLog] = React.useState(0)
 
     const [values, setValues] = React.useState({
         email: '',
@@ -35,52 +39,21 @@ const BoxLogin = (props) => {
     const loginGithub = async (e) => {
         e.preventDefault()
 
-        await api.get(`/login/github`)
-            .then(res => {
-                console.log(res.data)
-                // window.open(url, '_blank');
-            })
-            .catch(err => {
-                console.log(err)
-            })
+        const id = getUserId()
     }
 
     const loginGoogle = async (e) => {
         e.preventDefault()
-
-        await api.post(`/login/google`)
-            .then(res => {
-                console.log("it's ok")
-                // window.open(res.url, '_blank');
-            })
     }
 
     const sendForm = async (evento) => {
         evento.preventDefault()
 
-        await api.post(`/api/login`, {
-            "email": values.email,
-            "password": values.password
-        })
-            .then(res => {
-
-                if (res.data.status === 200 && isAuthenticated() === false) {
-                    login(res.data.token, res.data.id)
-                    window.location.reload();
-                }
-                else if (isAuthenticated()) {
-                    console.log("login já efetuado, espere um pouco!")
-                }
-                else if (res.data.status === 204) {
-                    console.log(res.data.mensagem)
-                }
-                else {
-                    console.log(res)
-                }
-            })
-            .catch(erro => {
-                console.log(erro)
-            })
+        const res = await Login.SignIn(values)
+        if(res.data.status === 200) {
+            storeLogin(res.data.token, res.data.id)
+            window.location.href= '/'
+        }
     }
 
     const handleChange = (prop) => (event) => {
@@ -182,6 +155,7 @@ const BoxLogin = (props) => {
                 </Grid>
 
                 <Button fullWidth type="submit" className=" shadow-md py-2 font-bold text-md rounded-lg bg-gradient-to-r from-azul-100 to-azul-200 group hover:scale-101" variant="contained">Entrar</Button>
+
             </Box>
 
             <Box className='w-full'>

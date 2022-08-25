@@ -7,17 +7,13 @@ import Grid from '@mui/material/Grid'
 import Aside from  '../components/Aside'
 import NavBar from '../components/NavBar/NavBarLogged'
 
-import api from '../services/api'
-import {getUserId} from '../services/auth'
+import * as User from '../models/Users'
 
+import * as Login from '../services/Login'
+import { getUserId } from '../client/auth';
 
 const Home = () => {
-    const getData = async () => {
-        await api.get(`/api/perfil/${getUserId()}`)
-        .then(res => {
-            console.log(res.data)
-        })
-    }
+    const userData = 2
 
     return (
         <Grid container className='h-screen w-full'>
@@ -32,9 +28,6 @@ const Home = () => {
                 <Main maxWidth='xl' bg='bg-azul-500' className="">
                     <NavBar />
                     
-                    <button onClick={getData}>
-                        pegaar dados
-                    </button>
                 </Main >
             </Grid>
         </Grid>

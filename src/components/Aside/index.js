@@ -10,13 +10,13 @@ import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import Divider from '@mui/material/Divider';
-import InboxIcon from '@mui/icons-material/Inbox';
 
 // Ícones
 import logo from '../../assets/img/icone.png'
+import InboxIcon from '@mui/icons-material/Inbox';
 
 const Aside = () => {
-    const [selectedIndex, setSelectedIndex] = React.useState(1);
+    const [selectedIndex, setSelectedIndex] = React.useState(1)
 
     const handleListItemClick = (event, index) => {
         setSelectedIndex(index);
@@ -28,7 +28,7 @@ const Aside = () => {
 
                 {/* Logo */}
                 <Typography
-                    className='font-jost flex items-center gap-2 '
+                    className='font-jost flex items-center gap-2 mt-2'
                     noWrap
                     component="span"
                     sx={{
