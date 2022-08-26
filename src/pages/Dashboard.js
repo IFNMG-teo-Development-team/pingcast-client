@@ -8,9 +8,6 @@ import Aside from  '../components/Aside'
 import NavBar from '../components/NavBar/NavBarLogged'
 import Player from '../components/Player'
 
-import * as User from '../models/Users'
-
-import * as Login from '../services/Login'
 import { getUserId } from '../client/auth';
 
 const Home = () => {
@@ -29,7 +26,7 @@ const Home = () => {
                 <Main maxWidth='xl' bg='bg-azul-500' className="">
                     <NavBar />
 
-                    <Player />
+                    <Player id='33' />
 
                 </Main >
             </Grid>

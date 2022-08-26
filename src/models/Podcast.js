@@ -18,6 +18,6 @@ export const add = api.add( (id, form ) => ({
 
 // PEGA O PODCAST DO USUÁRIO
 export const get = api.add( id => ({
-    method: 'post',
+    method: 'get',
     url: `/api/podcast/${id}`,
 }))
