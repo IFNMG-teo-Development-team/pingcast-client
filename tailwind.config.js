@@ -40,7 +40,7 @@ module.exports = {
 
           '90%': {
             transform: 'rotate(0deg)'
-          },
+          }, 
         },
       },
       animation: {
@@ -49,6 +49,22 @@ module.exports = {
       scale: {
         '101': '1.009',
       },
+    },
+    screens: {
+      'sm': '600px',
+      // => @media (min-width: 640px) { ... }
+
+      'md': '900px',
+      // => @media (min-width: 768px) { ... }
+
+      'lg': '1200px',
+      // => @media (min-width: 1024px) { ... }
+
+      'xl': '1536px',
+      // => @media (min-width: 1280px) { ... }
+
+      '2xl': '1836px',
+      // => @media (min-width: 1536px) { ... }
     }
   },
   plugins: [],

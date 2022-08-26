@@ -8,6 +8,8 @@ import Home from './pages/Home'
 import Cadastro from './pages/Cadastro'
 import NotFound from './pages/NotFound'
 import Dashboard from './pages/Dashboard'
+import Profile from './pages/Profile'
+import PodcastCreate from './pages/Profile'
 
 //Componentes
 import NavBar from './components/NavBar'
@@ -23,9 +25,10 @@ function App() {
             <Routes>
               <Route exact path="/" element={<Dashboard />} /> {/* PÁGINA INICIAL */}
 
+              <Route path="/u/:username" element={<Profile />} /> {/* PERFIL DOS USUARIOS */}
+
               <Route path="*" element={<NotFound />} />
             </Routes>
-            <Footer />
           </>
           :
           <> {/* Rotas para o usuário NÃO autentificado */}

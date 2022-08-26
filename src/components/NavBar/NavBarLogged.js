@@ -16,7 +16,7 @@ import Badge from '@mui/material/Badge';
 import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
 import ListItemAvatar from '@mui/material/ListItemAvatar';
-import TextField from '@mui/material/TextField'
+import { NavLink } from "react-router-dom"
 
 // Ícones
 import Avatar from '@mui/material/Avatar';
@@ -27,23 +27,25 @@ import Logout from '@mui/icons-material/Logout';
 import NotificationsOutlined from '@mui/icons-material/NotificationsNone';
 import Notifications from '@mui/icons-material/Notifications';
 
-import { usePromise } from '@refetty/react'
-import * as Login  from '../../services/Login'
+import * as Login from '../../services/Login'
 import * as User from '../../models/Users'
 import { removeLogin, getUserId } from '../../client/auth'
 
-const teste = async () => {
-    const id = getUserId()
-    const profile = await User.get(id)
-    console.log(profile)
 
-    const kkk = await User.all()
-    console.log(kkk)
-}
 
 const NavBar = () => {
+    const [profile, setProfile] = React.useState([])
 
-    teste()
+    React.useEffect(() => {
+        const fetchData = async () => {
+            const res = await User.get(getUserId())
+            setProfile(res.data)
+        }
+
+        fetchData().catch(console.error);
+
+    }, [])
+
 
     // SOBRE O MENU DE NOTIFICAÇÕES
     const [anchorElBell, setAnchorElBell] = React.useState(null);
@@ -75,14 +77,12 @@ const NavBar = () => {
     };
 
     return (
-        <AppBar position="static" className="bg-transparent shadow-none text-azul-300">
+        <AppBar position="static" className="bg-transparent shadow-none text-azul-300 h-16">
             <Toolbar disableGutters sx={{ display: 'flex', alignItems: 'center' }}>
 
-                <Box>
-                    <TextField fullWidth className="rounded-lg mt-4"
-                        label="Pesquisa" type={'search'}
-                        variant="outlined" size="small" />
-                </Box>  
+                <Box className="relative text-gray-600">
+                    <input type="search" name="serch" placeholder="Procurar por algo..." className="bg-white h-10 w-full xl:w-64 px-5 rounded-lg border text-sm focus:outline-none" />
+                </Box>
 
                 <Box sx={{ display: 'flex', marginLeft: 'auto', alignItems: 'center' }}>
 
@@ -207,7 +207,7 @@ const NavBar = () => {
 
                     {/* MENU DO PERFIL */}
                     <Box className="gap-2 flex items-center">
-                        <Tooltip title="Account settings">
+                        <Tooltip title="Dados da conta">
                             <IconButton
                                 onClick={handleClick}
                                 size="small"
@@ -215,10 +215,12 @@ const NavBar = () => {
                                 aria-controls={open ? 'account-menu' : undefined}
                                 aria-haspopup="true"
                                 aria-expanded={open ? 'true' : undefined}
-                                className='rounded-md gap-2'
+                                className='rounded-full gap-2 px-2'
                             >
                                 <Avatar sx={{ width: 32, height: 32 }}>S</Avatar>
-                                <Typography sx={{ display: { xs: 'none', md: 'flex' } }} component="h3">Samuel</Typography>
+                                <Typography sx={{ display: { xs: 'none', md: 'flex' } }} component="h3">
+                                    {profile.nome}
+                                </Typography>
                             </IconButton>
                         </Tooltip>
 
@@ -257,21 +259,21 @@ const NavBar = () => {
                             transformOrigin={{ horizontal: 'right', vertical: 'top' }}
                             anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
                         >
-                            <MenuItem>
+                            <NavLink to={`/u/${profile.username}`} className="w-full gap-2 my-1 flex items-center h-10 pl-4 hover:bg-gray-200 rounded-sm cursor-pointer">
                                 <Avatar /> Ver perfil
-                            </MenuItem>
+                            </NavLink>
                             <Divider />
                             <MenuItem>
                                 <ListItemIcon>
                                     <PersonAdd fontSize="small" />
                                 </ListItemIcon>
-                                Add another account
+                                Adicionar Outra Conta
                             </MenuItem>
                             <MenuItem>
                                 <ListItemIcon>
                                     <Settings fontSize="small" />
                                 </ListItemIcon>
-                                Settings
+                                Configurações
                             </MenuItem>
                             <MenuItem onClick={handleLogOut}>
                                 <ListItemIcon>

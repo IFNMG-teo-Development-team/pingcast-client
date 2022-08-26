@@ -20,14 +20,13 @@ const Home = () => {
 
             <HeadPage titulo="Home" />
 
-            <Grid item md={3} sx={{ display: { xs: 'none', md: 'flex', lg: 'flex' } }} className='bg-cinza-50'>
+            <Grid item xs={2} sm={1} md={3} className=' bg-cinza-50'>
                 <Aside />
             </Grid>
 
-            <Grid item xs={12} md={9}>
+            <Grid item xs={10} sm={11} md={9}>
                 <Main maxWidth='xl' bg='bg-azul-500' className="">
                     <NavBar />
-                    
                 </Main >
             </Grid>
         </Grid>

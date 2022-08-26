@@ -1,6 +1,5 @@
 import React from 'react'
 import { Link } from "react-router-dom"
-import { Navigate } from "react-router-dom";
 
 // Componentes
 import Box from '@mui/material/Box'
@@ -20,7 +19,6 @@ import { styled } from '@mui/material/styles'
 import Typography from '@mui/material/Typography'
 
 import * as Login from '../../services/Login'
-import * as User from '../../models/Users'
 import { storeLogin} from '../../client/auth';
 import { removeLogin, getUserId } from '../../client/auth'
 

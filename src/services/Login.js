@@ -1,5 +1,4 @@
 import api from '../client/api'
-import axios from 'axios'
 
 export const SignUp = api.add(({ username, nome, sobrenome, email, senha, sexo, birth }) => ({
   method: 'post',
