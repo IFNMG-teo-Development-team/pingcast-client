@@ -38,9 +38,8 @@ const Create = () => {
 
         const form = document.querySelector('form');
         const data = Object.fromEntries(new FormData(form).entries());
-        console.log(data)
 
-        if (await Podcast.add(data)) {
+        if (await Podcast.add(getUserId(),data)) {
             navigate('/')
         }
     }
@@ -76,10 +75,7 @@ const Create = () => {
                                     multiline maxRows={4} label="Descrição" onChange={handleChange('bio')} variant="outlined" size="small" required />
 
                                 <TextField fullWidth className="rounded-lg mb-1" name="participantes"
-                                    label="Participantes convidados" variant="outlined" size="small" required />
-
-                                <TextField fullWidth className="rounded-lg mb-1" name="duracao"
-                                    label="Duracao" variant="outlined" size="small" required />
+                                    label="Participantes convidados" variant="outlined" size="small" />
 
                                 <Box>
                                     <label htmlFor="audio" className="relative cursor-pointer bg-white font-medium text-indigo-600 hover:text-indigo-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-indigo-500 mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md">

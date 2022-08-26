@@ -8,10 +8,16 @@ import api from '../client/api'
 *
 */
 
-//BUSCA O CANAL DO USUÁRIO
-export const add = api.add( (form ) => ({
+// BUSCA O PODCAST DO USUÁRIO
+export const add = api.add( (id, form ) => ({
     method: 'post',
-    url: `/api/perfil/${'6'}/canal/podcast`,
+    url: `/api/perfil/${id}/canal/podcast`,
     data: [form],
     headers: {'content-type': 'multipart/form-data'}
+}))
+
+// PEGA O PODCAST DO USUÁRIO
+export const get = api.add( id => ({
+    method: 'post',
+    url: `/api/podcast/${id}`,
 }))
