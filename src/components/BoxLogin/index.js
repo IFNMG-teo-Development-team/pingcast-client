@@ -27,8 +27,6 @@ import GitHubIcon from '@mui/icons-material/GitHub';
 import GoogleIcon from '@mui/icons-material/Google';
 
 const BoxLogin = (props) => {
-    const [statusLog, setStatusLog] = React.useState(0)
-
     const [values, setValues] = React.useState({
         email: '',
         password: '',

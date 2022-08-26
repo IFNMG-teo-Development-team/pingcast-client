@@ -9,7 +9,7 @@ import Cadastro from './pages/Cadastro'
 import NotFound from './pages/NotFound'
 import Dashboard from './pages/Dashboard'
 import Profile from './pages/Profile'
-import PodcastCreate from './pages/Profile'
+import PodcastCreate from './pages/CreatePodcast'
 
 //Componentes
 import NavBar from './components/NavBar'
@@ -26,6 +26,8 @@ function App() {
               <Route exact path="/" element={<Dashboard />} /> {/* PÁGINA INICIAL */}
 
               <Route path="/u/:username" element={<Profile />} /> {/* PERFIL DOS USUARIOS */}
+
+              <Route path="podcast/create" element={<PodcastCreate />} /> {/* ADD UM PODCAST */}
 
               <Route path="*" element={<NotFound />} />
             </Routes>
