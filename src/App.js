@@ -9,7 +9,10 @@ import Cadastro from './pages/Cadastro'
 import NotFound from './pages/NotFound'
 import Dashboard from './pages/Dashboard'
 import Profile from './pages/Profile'
+
 import PodcastCreate from './pages/CreatePodcast'
+
+import CanalCreate from './pages/CreateCanal'
 
 //Componentes
 import NavBar from './components/NavBar'
@@ -27,7 +30,11 @@ function App() {
 
               <Route path="/u/:username" element={<Profile />} /> {/* PERFIL DOS USUARIOS */}
 
-              <Route path="podcast/create" element={<PodcastCreate />} /> {/* ADD UM PODCAST */}
+              {/* ROTAS SOBRE PODCAST */}
+              <Route path="podcast/create" element={<PodcastCreate />} />
+
+              {/* ROTAS SOBRE CANAL */}
+              <Route path="canal/create" element={<CanalCreate />} />
 
               <Route path="*" element={<NotFound />} />
             </Routes>

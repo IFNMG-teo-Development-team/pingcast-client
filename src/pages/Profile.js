@@ -8,37 +8,61 @@ import HeadPage from '../components/Head'
 import Grid from '@mui/material/Grid'
 import Aside from '../components/Aside'
 import { Navigate, NavLink } from "react-router-dom"
-
-import { styled } from '@mui/material/styles';
-import Box from '@mui/material/Box';
-import Rating from '@mui/material/Rating';
-import FavoriteIcon from '@mui/icons-material/Favorite';
-import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
-
 import SpeedDial from '@mui/material/SpeedDial';
 import SpeedDialIcon from '@mui/material/SpeedDialIcon';
 import SpeedDialAction from '@mui/material/SpeedDialAction';
-import FileCopyIcon from '@mui/icons-material/FileCopyOutlined';
+import IconButton from '@mui/material/IconButton';
+import Box from '@mui/material/Box';
+import Tabs from '@mui/material/Tabs';
+import Tab from '@mui/material/Tab';
+
+// ICONES
+import FavoriteIcon from '@mui/icons-material/Favorite';
+import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+
+import AddIcon from '@mui/icons-material/Add';
 import SaveIcon from '@mui/icons-material/Save';
 import PrintIcon from '@mui/icons-material/Print';
 import ShareIcon from '@mui/icons-material/Share';
 import EditIcon from '@mui/icons-material/Edit';
+import KeyboardVoiceIcon from '@mui/icons-material/KeyboardVoice';
 
 // API
 import * as User from '../models/Users'
+import * as Canal from '../models/Canal'
 import { getUserId } from '../client/auth'
+import { Typography } from '@mui/material'
 
-const StyledRating = styled(Rating)({
-    '& .MuiRating-iconFilled': {
-        color: '#ff6d75',
-    },
-    '& .MuiRating-iconHover': {
-        color: '#ff3d47',
-    },
-});
+// CARD PARA CADA TAB
+const TabPanel = (props) => {
+    const { children, value, index, ...other } = props;
 
+    return (
+        <Box component={'div'}
+            className={value !== index ? 'hidden' : ''}
+            hidden={value !== index}
+            id={`full-width-tabpanel-${index}`}
+            aria-labelledby={`full-width-tab-${index}`}
+            {...other}
+        >
+            {value === index && (
+                <Box sx={{ p: 3 }}>
+                    <Typography>{children}</Typography>
+                </Box>
+            )}
+        </Box>
+    );
+}
 const Profile = () => {
+    // DADOS DO PERFIL DA PG
     const [profile, setProfile] = React.useState([])
+
+    // STATUS DO BOTÃO SEGUIR
+    const [follow, setFollow] = React.useState(false)
+
+    // CANAL DE PODCAST Q O USUARIO ESTÁ VISUALIZANDO
+    const [canal, setCanal] = React.useState(0);
+    const [allChannels, setAllChannels] = React.useState({});
 
     const navigate = useNavigate()
     const { username } = useParams()
@@ -52,21 +76,46 @@ const Profile = () => {
                 setProfile(prof)
             }
             catch (e) {
-                console.log(e)
+                navigate('/')
             }
         }
 
-        fetchData().catch(() => (
-            navigate('/')
-        ));
+        fetchData()
     }, [username])
 
+/*
+    React.useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const canais = await Canal.get(profile.id)
+                setAllChannels(JSON.stringify(canais.data))
+                console.log(allChannels)
+            }
+            catch (e) {
+                console.log(e)
+            }
+        }
+        fetchData()
+    }, [profile])
+*/
+
     const actions = [
-        { icon: <FileCopyIcon />, name: 'Copy', uri: `/podcast/create` },
-        { icon: <SaveIcon />, name: 'Save', uri: 'criar' },
+        { icon: <AddIcon />, name: 'Novo Canal', uri: '/canal/create' },
+        { icon: <KeyboardVoiceIcon />, name: 'Novo Podcast', uri: '/podcast/create' },
         { icon: <PrintIcon />, name: 'Print', uri: 'criar' },
         { icon: <ShareIcon />, name: 'Share', uri: 'criar' },
     ];
+
+    const handleChangeCanal = (event, newValue) => {
+        setCanal(newValue);
+    };
+
+    const handleFollow = (e) => {
+        if (follow)
+            setFollow(false)
+        else
+            setFollow(true)
+    }
 
     if (profile.lenght !== 0)
         return (
@@ -75,7 +124,7 @@ const Profile = () => {
 
                     <HeadPage titulo={profile.nome} />
 
-                    <Grid item xs={2} sm={1} md={3} className=' bg-cinza-50'>
+                    <Grid item xs={2} sm={1} md={3}>
                         <Aside />
                     </Grid>
 
@@ -83,7 +132,7 @@ const Profile = () => {
                         <Main maxWidth='2xl' bg='bg-blueGray-200' >
                             <NavBar />
 
-                            <section className="relative rounded-t-lg mt-40">
+                            <Box component="section" className="relative rounded-t-lg mt-40">
                                 <div className='absolute -top-40'>
                                     <img className='rounded-t-md w-full h-full' alt="bg" src="https://images.unsplash.com/photo-1499336315816-097655dcfbda?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=2710&amp;q=80" />
                                 </div>
@@ -93,19 +142,20 @@ const Profile = () => {
                                             <div className="flex flex-wrap justify-center">
                                                 <div className="w-full lg:w-3/12 px-4 lg:order-2 flex justify-center">
                                                     <div className='flex justify-center'>
-                                                        <img alt="..." src="https://demos.creative-tim.com/notus-js/assets/img/team-2-800x800.jpg" className="shadow-xl rounded-full h-36 w-36 border-none absolute -top-14" />
+                                                        <img alt="foto de perfil" src="https://www.fiscalti.com.br/wp-content/uploads/2021/02/default-user-image.png" className="shadow-xl rounded-full h-36 w-36 border-none absolute -top-14" />
                                                     </div>
                                                 </div>
                                                 <div className="w-full lg:w-4/12 px-4 lg:order-3 lg:text-right lg:self-center">
                                                     <div className="py-6 px-3 mt-32 sm:mt-0">
+
                                                         {
                                                             getUserId === profile.id ?
-                                                                <NavLink type="button" className="text-white shadow-md px-4 py-2 font-bold text-sm rounded-lg bg-gradient-to-r from-azul-100 to-azul-200 group hover:scale-101" variant="contained">
-                                                                    Seguir
-                                                                </NavLink> :
-                                                                <NavLink to='/adicionar' type="button" className="text-white shadow-md px-4 py-2 font-bold text-sm rounded-lg bg-gradient-to-r from-azul-100 to-azul-200 group hover:scale-101" variant="contained">
-                                                                    Adicionar
-                                                                </NavLink>
+                                                                <IconButton onClick={handleFollow} aria-label="Seguir" color="error">
+                                                                    {follow === false ? <FavoriteBorderIcon color="disabled" /> : <FavoriteIcon color="error" />}
+                                                                </IconButton> :
+                                                                <IconButton aria-label="Seguir" color="error">
+                                                                    <FavoriteIcon color="error" />
+                                                                </IconButton>
                                                         }
 
                                                     </div>
@@ -144,10 +194,30 @@ const Profile = () => {
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                </div>
-                            </section>
 
+                                        <Box sx={{ width: '100%' }}>
+                                            <Box sx={{ bgcolor: '#fff' }}>
+                                                {/* NOME DOS CANAIS DO PODCAST*/}
+                                                <Tabs value={canal} onChange={handleChangeCanal} aria-label="ant example">
+                                                    <Tab label="Canal 1" />
+                                                    <Tab label="Canal 2" />
+                                                </Tabs>
+                                                <Box sx={{ p: 1 }} />
+
+                                                {/* PODCASTS DE CADA CANAL */}
+                                                <TabPanel value={canal} index={0} >
+                                                    Nenhum podcast postado
+                                                </TabPanel>
+                                                <TabPanel value={canal} index={1} >
+                                                    Nenhum podcast postado
+                                                </TabPanel>
+                                            </Box>
+                                        </Box>
+                                    </div>
+
+
+                                </div>
+                            </Box>
                         </Main >
                     </Grid>
 

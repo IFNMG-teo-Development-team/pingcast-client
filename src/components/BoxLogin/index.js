@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link } from "react-router-dom"
+import { Link, Navigate } from "react-router-dom"
 
 // Componentes
 import Box from '@mui/material/Box'
@@ -45,7 +45,7 @@ const BoxLogin = (props) => {
     const sendForm = async (evento) => {
         evento.preventDefault()
 
-        const res = await Login.SignIn(values)
+        const res = await Login.signIn(values)
         if(res.data.status === 200) {
             storeLogin(res.data.token, res.data.id)
             window.location.href= '/'

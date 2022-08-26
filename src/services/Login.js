@@ -1,6 +1,6 @@
 import api from '../client/api'
 
-export const SignUp = api.add(({ username, nome, sobrenome, email, senha, sexo, birth }) => ({
+export const signUp = api.add(({ username, nome, sobrenome, email, senha, sexo, birth }) => ({
   method: 'post',
   url: `/api/perfil`,
   data: {
@@ -14,7 +14,7 @@ export const SignUp = api.add(({ username, nome, sobrenome, email, senha, sexo, 
   },
 }))
 
-export const SignIn = api.add(({ email, password }) => ({
+export const signIn = api.add(({ email, password }) => ({
   method: 'post',
   url: `/api/login`,
   data: {

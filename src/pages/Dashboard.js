@@ -6,6 +6,7 @@ import HeadPage from '../components/Head'
 import Grid from '@mui/material/Grid'
 import Aside from  '../components/Aside'
 import NavBar from '../components/NavBar/NavBarLogged'
+import Player from '../components/Player'
 
 import * as User from '../models/Users'
 
@@ -27,6 +28,9 @@ const Home = () => {
             <Grid item xs={10} sm={11} md={9}>
                 <Main maxWidth='xl' bg='bg-azul-500' className="">
                     <NavBar />
+
+                    <Player />
+
                 </Main >
             </Grid>
         </Grid>

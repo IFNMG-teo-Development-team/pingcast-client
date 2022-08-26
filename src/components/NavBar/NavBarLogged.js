@@ -31,8 +31,6 @@ import * as Login from '../../services/Login'
 import * as User from '../../models/Users'
 import { removeLogin, getUserId } from '../../client/auth'
 
-
-
 const NavBar = () => {
     const [profile, setProfile] = React.useState([])
 
@@ -217,7 +215,7 @@ const NavBar = () => {
                                 aria-expanded={open ? 'true' : undefined}
                                 className='rounded-full gap-2 px-2'
                             >
-                                <Avatar sx={{ width: 32, height: 32 }}>S</Avatar>
+                                <Avatar sx={{ width: 32, height: 32 }} />
                                 <Typography sx={{ display: { xs: 'none', md: 'flex' } }} component="h3">
                                     {profile.nome}
                                 </Typography>

@@ -20,7 +20,7 @@ const Aside = () => {
 
     return (
         <>
-            <Box component="aside" className="w-full h-screen lg:block bg-gray-100">
+            <Box component="aside" className="w-full lg:block bg-gray-100 h-full">
 
                 {/* Logo */}
                 {/* Tela grande...*/}

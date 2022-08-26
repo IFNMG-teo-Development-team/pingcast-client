@@ -207,7 +207,7 @@ const Form = () => {
         if (dados.username.length === 0) isCompleted = false
 
 
-        const res = await Login.SignUp(dados)
+        const res = await Login.signUp(dados)
         console.log(res)
         if (res.data.status === 200) {
             storeLogin(res.data.token, res.data.id)
