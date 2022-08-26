@@ -199,16 +199,12 @@ const Profile = () => {
                                             <Box sx={{ bgcolor: '#fff' }}>
                                                 {/* NOME DOS CANAIS DO PODCAST*/}
                                                 <Tabs value={canal} onChange={handleChangeCanal} aria-label="ant example">
-                                                    <Tab label="Canal 1" />
-                                                    <Tab label="Canal 2" />
+                                                    <Tab label="Canal principal" />
                                                 </Tabs>
                                                 <Box sx={{ p: 1 }} />
 
                                                 {/* PODCASTS DE CADA CANAL */}
                                                 <TabPanel value={canal} index={0} >
-                                                    Nenhum podcast postado
-                                                </TabPanel>
-                                                <TabPanel value={canal} index={1} >
                                                     Nenhum podcast postado
                                                 </TabPanel>
                                             </Box>

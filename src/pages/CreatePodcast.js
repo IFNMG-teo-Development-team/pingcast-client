@@ -9,27 +9,40 @@ import Aside from '../components/Aside'
 import Typography from '@mui/material/Typography'
 import Box from '@mui/material/Box'
 import TextField from '@mui/material/TextField'
-import InputLabel from '@mui/material/InputLabel';
-import MenuItem from '@mui/material/MenuItem';
-import FormControl from '@mui/material/FormControl';
-import Select from '@mui/material/Select';
+
 
 // API
-import * as User from '../models/Users'
-import { getUserId } from '../client/auth'
+import * as Podcast from '../models/Podcast'
+import { getUserId, getToken } from '../client/auth'
 import { Button } from '@mui/material'
+import { useNavigate } from 'react-router-dom'
 
 const Create = () => {
     const [values, setValues] = React.useState({
         nome: '',
         bio: '',
-        tema: ''
+        duration: '01:01',
     });
+
+    const [file, setFile] = React.useState([])
+
+    const handleFile = (e) => {
+        let files = e.target.files
+        setFile(files);
+    }
+
+    let navigate = useNavigate()
 
     const sendForm = async (evento) => {
         evento.preventDefault()
 
-        console.log(values)
+        const form = document.querySelector('form');
+        const data = Object.fromEntries(new FormData(form).entries());
+        console.log(data)
+
+        if (await Podcast.add(data)) {
+            navigate('/')
+        }
     }
 
     const handleChange = (prop) => (event) => {
@@ -56,35 +69,23 @@ const Create = () => {
                                     Adicionar podcast
                                 </Typography>
 
-                                <TextField fullWidth className="rounded-lg mb-1" id="cmp-nome"
+                                <TextField fullWidth className="rounded-lg mb-1" name="nome" id="cmp-nome"
                                     label="Nome do podcast" onChange={handleChange('nome')} variant="outlined" size="small" required />
 
-                                <TextField fullWidth className="rounded-lg mb-1" sx={{ mt: 1 }} id="cmp-bio"
+                                <TextField fullWidth className="rounded-lg mb-1" name="descricao" sx={{ mt: 1 }} id="cmp-bio"
                                     multiline maxRows={4} label="Descrição" onChange={handleChange('bio')} variant="outlined" size="small" required />
 
-                                <FormControl className="w-full mt-4" size="small">
-                                    <InputLabel id="demo-select-small">Tema</InputLabel>
-                                    <Select
-                                        labelId="Tema"
-                                        id="tema"
-                                        value={values.tema}
-                                        label="Age"
-                                        onChange={handleChange('tema')}
-                                    >
-                                        <MenuItem value="">
-                                            <em>Selecione uma opção</em>
-                                        </MenuItem>
-                                        <MenuItem value={'Front-End'}>Front-End</MenuItem>
-                                        <MenuItem value={'Back-End'}>Back-End</MenuItem>
-                                        <MenuItem value={'Banco de dados'}>Banco de Dados</MenuItem>
-                                        <MenuItem value={'Análise de sistemas'}>Análise de sistemas</MenuItem>
-                                        <MenuItem value={'Tecnologias e afins'}>Dicas de tecnologias e afins</MenuItem>
-                                    </Select>
-                                </FormControl>
+                                <TextField fullWidth className="rounded-lg mb-1" name="participantes"
+                                    label="Participantes convidados" variant="outlined" size="small" required />
+
+                                <TextField fullWidth className="rounded-lg mb-1" name="duracao"
+                                    label="Duracao" variant="outlined" size="small" required />
 
                                 <Box>
-                                    <label htmlFor="file-upload" className="relative cursor-pointer bg-white font-medium text-indigo-600 hover:text-indigo-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-indigo-500 mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md">
-                                        <input id="file-upload" onChange={handleChange('audio')} name="file-upload" type="file" className="sr-only" accept="audio/*" required />
+                                    <label htmlFor="audio" className="relative cursor-pointer bg-white font-medium text-indigo-600 hover:text-indigo-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-indigo-500 mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md">
+                                        <input id="audio"
+                                            onChange={(e) => handleFile(e)}
+                                            name="audio" type="file" className="sr-only" accept="audio/*" required />
                                         <div className="space-y-1 text-center">
 
                                             <svg xmlns="http://www.w3.org/2000/svg" className="mx-auto h-12 w-12 text-blue-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">

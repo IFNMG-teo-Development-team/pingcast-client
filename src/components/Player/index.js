@@ -2,9 +2,11 @@ import React from "react"
 
 const Player = () => {
     return (
-    <>
-        Music player coming soon
-    </>
+    <div>
+        <audio src="https://tuningmania.com.br/autosom/mp3/Pink%20Noise.mp3">
+
+        </audio>
+    </div>
     )
 }
 
